@@ -5,30 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EstágioLink Aluno</title>
     <link rel="icon" href="../IMAGENS/ELKLogo.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="../CSS/main-pages.css"/>
+    <link rel="stylesheet" href="../CSS/style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
-  <body id = "fundo-aluno">
-    <header>
-      <div class="fundo-elk-logo">
-          <img src = "../IMAGENS/ELKLogo.png"/>
+  <body>
+    <header class="container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 mb-4 shadow" style = "border-end-end-radius: 2em; border-bottom-left-radius: 2em; ">
+      <div class ="row align-items-center bg-white flex-nowrap">
+        <div class ="flex-shrink-1 col-md-2 align-items-center p-4 " style="background-color: aqua;">
+          <a href="#" class="text-decoration-none">
+            <img class=" img-fluid rounded"src="../IMAGENS/EstágioLink.png">
+          </a>
+        </div>
+        <div class = "col-6 text-center" style="background-color: rgb(255, 0, 0);">
+          <a href="main-empresa.html" style = "color:white">Sou uma empresa</a>
+        </div>
+  
+        <div class="col-md-auto text-end flex-shrink-1" style="background-color: rgb(43, 0, 255);">
+          <button type="button" class="btn btn-outline-light">Login</button>
+          <button type="button" class="btn btn-light" style = "color: rgba(61, 155, 58, 1)">Registre-se</button>
+        </div>
       </div>
-      <a href = "main-empresa.html" class="modo">Sou uma empresa</a>
-      <div class="buttons-header">
-        <a href = "paginas-login/aluno.html"><button class="login-botao">Login</button></a>
-        <a href = "paginas-registro/aluno.html"><button class="registrese-botao">Registre-se</button></a>
+
     </header>
-    <div class="elementos-esquerda">
-        <div class="text-esquerda">
-          Você é um estudante em busca de oportunidades incríveis para impulsionar sua carreira? Nós temos a solução perfeita para você!
+    <div class = "container-fluid d-flex flex-nowrap text-white align-items-center bg-dark h-50" >
+      <div class = "row align-items-center m-2 h-100" style="background-color: rgb(119, 148, 153);">
+        <div class ="col-4" style="background-color: rgb(3, 213, 255);">
+          <h4>
+            Você é um estudante em busca de oportunidades incríveis para impulsionar sua carreira? Nós temos a solução perfeita para você!
+          </h4>
+          <div class="row justify-content-center justify-content-md-between mt-3">
+            <button class="btn btn-outline-light">Crie seu currículo</button>
+            <button class="btn btn-light" style = "color: rgba(61, 155, 58, 1)">Busque estágio</button>
+          </div>
         </div>
-        <div class="buttons-esquerda">
-            <a href = "paginas-registro/aluno.html"><button class="botao-verde">Crie seu currículo</button></a>
-            <a href = "paginas-login/aluno.html"><button class="botao-transparente">Busque estágio</button></a>
-        </div>
-    </div>
-
-    <div id = "pos" class="fundo-blur">Está com dificuldade para encontrar estágios?</div>
-    <div id="posi" class="fundo-blur">A gente te ajuda a encontrar o estágio ideal!</div>
-
+          <div class ="col h-100" style="background-color: rgb(255, 0, 13);">
+            <div class = "row text-center bg-info">
+              <div class="border border-light p-1  gradient-bars-main">
+                <span>Está com dificuldade para encontrar estágio?</span>
+              </div>
+              <div class="border border-light p-1 gradient-bars-main">
+                <span>A gente te ajuda a encontrar o estágio ideal!</span>
+              </div>
+            </div>
+          </div>
+      </div>
+      
+      </div>
+      
   </body>
 </html>
