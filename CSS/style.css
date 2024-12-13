@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial;
+}
+body {
+    display: flex;
+    position: 0;
+    margin: 0;
+    height: 100%;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+    color:rgba(61, 155, 58, 1);
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    text-align: left;
+    align-items: center;
+}
+.nav-bar{
+    display: flex;
+    width: 100%;
+    white-space: nowrap;
+    color: rgba(61, 155, 58, 1);
+    margin-bottom: 20px;
+}
+
+h1{
+    margin-right:67%;
+    margin-bottom: 20px;
+    white-space: nowrap;
+}
+.conteudo{
+    width: 100%;
+    flex-direction: column;
+}
+.header-cima{
+    display: flex;
+    height: 130px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-top: 10px;
+}
+.header-cima p{
+    position: absolute;
+    margin-left: 85%;
+}
+header {
+    display: flex;
+    height: 130px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(61, 155, 58, 1);
+    color: white;
+    margin-bottom: 100px;
+}
+.fundo-elk-logo {
+    padding: 10px;
+    align-items: center;
+    background-color: white;
+    margin-left: 60px;
+    height: 92px;
+    overflow: hidden;
+    border-radius: 40px;
+}
+  
+.fundo-elk-logo img{
+    height:100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+header nav{
+    display:flex;
+    background-color: rgba(202, 17, 14, 1);
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+#pagi{
+    
+    border: none;
+    border-radius: 10px;
+    background-color:rgba(158, 8, 5, 1);
+}
+
+header nav a{
+    text-decoration: none;
+    color: white;
+    display:flex;
+    padding: 10px;
+    background-color: transparent;
+    transition: opacity 0.5s ease;
+}
+header nav a:hover{
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(208, 54, 51);
+}
+
+
+.etapas{
+    color: rgb(51, 51, 51);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid black;
+    width: 70%;
+    padding: 10px;
+    white-space: nowrap;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#pag{
+    color: rgba(61, 155, 58, 1);
+}
+h2{
+    margin-bottom: 30px;
+    margin-right:55%;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.forms{
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.form-content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+form p{
+    margin-bottom: 10px;
+}
+.form-twocontent{
+    flex-direction: column;
+    display: flex;
+    width: 35%;
+}
+.tw{
+    display: flex;
+    gap: 40px;
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    background-color: rgba(61, 155, 58, 1);
+    bottom: 0;
+    width: 100%;
+    height: 144px;
+    color: #ffffff;
+    padding: 0 550px 0 100px;
+  }
+  
+  footer p{
+    font-size: 12px;
+  }
+  .fundo-ifba{
+    justify-content: center;
+    display: flex;
+    width: 80px;
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 40px;
+    padding: 5px;
+  }

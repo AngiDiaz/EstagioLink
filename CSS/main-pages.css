@@ -1,232 +1,294 @@
-:root {
-    --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
-      "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
-      "Source Han Sans CN", sans-serif;
-  }
-  
-  body{
-    background-image: url("../IMAGENS/background-main-empresa.png");
-    background-repeat: no-repeat;
-    background-size: cover;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial;
 }
-header{
-    display: flex;
-    align-items: center;
-    gap: 383px;
-    position: absolute;
-    width: 100vw;
-    height: 180px;
-    top: 0;
-    padding: 10px 0 10px 78px;
-    background: #3d9b3a;
-    z-index: 13;
-    border-radius: 0 0 53px 53px;
-    box-shadow: 0 14px 18.7px 0 rgba(0, 0, 0, 0.29);
-  }
-  
-  .elementos-direita {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    width: 640px;
-    height: 494px;
-    top: 347px;
-    left: 95px;
-  }
-  .text-direita{
-    display: flex;
-    align-items: center;
-    width: 30vw;
-    height: 30vh;
-    color: #ffffff;
-    font-family: Inter, var(--default-font-family);
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 40px;
-    text-align: justify;
-    
-  }
-  .buttons-direita {
-    display: flex;
-    gap: 90px;
-  }
 
-  .botao-verde{
-    display: flex;
-    justify-content: center;
-    width: 280px;
-    padding: 18px 29px 18px 29px;
-    background: rgba(61, 155, 58, 0.61);
-    border: 2px solid #3d9b3a;
-    border-radius: 45px;
-    color: #ffffff;
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    line-height: 24px;
-    white-space: nowrap;
-  }
-  .botao-transparente {
-    display: flex;
-    width: 274px;
-    padding: 18px 29px 18px 29px;
-    background: transparent;
-    border: 2px solid #ffffff;
-    border-radius: 45px;
-    color: #ffffff;
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    line-height: 29px;
-    white-space: nowrap;
-  }
- 
-  .fundo-blur {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 580px;
-    height: 40px;
-    padding: 21px 27px 21px 27px;
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.4),
-      rgba(255, 255, 255, 0.05)
-    );
-    border: 1px solid rgba(255, 255, 255, 0.73);
-    border-radius: 50px;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-    color: rgba(255, 255, 255, 0.74);
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    white-space: nowrap;
-  }
- 
-  #pos{
-    top: 460px;
-    left: 1107px;
-  }
-  #posi{
-    top: 638px;
-    left: 1216px;
-  }
-  
-  .connect-interns-companies {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    flex-basis: auto;
-    position: relative;
-    width: 621px;
-    height: 24px;
-    color: rgba(255, 255, 255, 0.77);
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 24px;
-    text-align: center;
-    white-space: nowrap;
-    z-index: 4;
-  }
-  
-  .fundo-elk-logo {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 199px;
-    padding: 10px 10px 10px 10px;
-    background: #ffffff;
-    border-radius: 50px;
-  }
+#fundo-aluno{
+  background-image: url("../IMAGENS/background-main-aluno.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow:hidden;
+}
+#fundo-empresa{
+  background-image: url("../IMAGENS/background-main-empresa.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow:hidden;
+}
 
+body {
+  display: flex;
+  position: 0;
+  margin: 0;
+  height: 100%;
+  flex-direction: column;
+  min-height: 100vh;
+  align-items: center;
+}
+a{
+text-decoration: none;
+}
+header {
+  height: 130px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(61, 155, 58, 1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 40px 40px;
+}
+
+.fundo-elk-logo {
+  padding: 10px;
+  align-items: center;
+  background-color: white;
+  margin-left: 60px;
+  height: 92px;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+.fundo-elk-logo img{
+  height:100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.modo {
+height: 29px;
+color: rgba(255, 255, 255, 0.79);
+font-size: 16px;
+line-height: 29px;
+text-align: left;
+white-space: nowrap;
+}
+.buttons-header {
+display: flex;
+align-items: center;
+gap: 30px;
+width: 451px;
+}
+.login-botao {
+width: 130px;
+height: 50px;
+background: transparent;
+border: 1px solid #ffffff;
+border-radius: 45px;
+color: #ffffff;
+font-size: 16px;
+}
+.registrese-botao {
+width: 150px;
+height: 50px;
+background: rgba(255, 255, 255, 0.28);
+border: 1px solid #ffffff;
+border-radius: 45px;
+color: #ffffff;
+font-size: 16px;
+}
+
+.elementos-esquerda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  width: 640px;
+  height: 494px;
+  top: 250px;
+  left: 30px;
   
-  .modo {
-    gap: 26px;
-    flex-shrink: 0;
-    flex-basis: auto;
-    position: relative;
-    height: 29px;
-    color: rgba(255, 255, 255, 0.79);
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 29px;
-    text-align: left;
-    white-space: nowrap;
-    z-index: 18;
-  }
-  .buttons-header {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    gap: 101px;
-    position: relative;
-    width: 451px;
-    z-index: 19;
-  }
-  .login-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    gap: 10px;
-    position: relative;
-    width: 141px;
-    padding: 15px 39px 15px 39px;
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid #ffffff;
-    z-index: 20;
-    border-radius: 45px;
-  }
-  .login {
-    flex-shrink: 0;
-    flex-basis: auto;
-    position: relative;
-    height: 29px;
-    color: #ffffff;
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 29px;
-    text-align: left;
-    white-space: nowrap;
-    z-index: 21;
-  }
-  .registrese-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-    gap: 10px;
-    position: relative;
-    width: 209px;
-    padding: 15px 39px 15px 39px;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.28);
-    border: 1px solid #ffffff;
-    z-index: 22;
-    border-radius: 45px;
-  }
-  .registre-se {
-    flex-shrink: 0;
-    flex-basis: auto;
-    position: relative;
-    height: 29px;
-    color: #ffffff;
-    font-family: Inter, var(--default-font-family);
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 29px;
-    text-align: left;
-    white-space: nowrap;
-    z-index: 23;
-  }
-  
+}
+.text-esquerda{
+  display: flex;
+  align-items: center;
+  width: 30vw;
+  height: 30vh;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: left;
+  font-weight: 2000;
+  margin-bottom: 10px;
+}
+.buttons-esquerda {
+  display: flex;
+  gap: 90px;
+  text-decoration: none;
+}
+
+.botao-verde{
+  justify-content: center;
+  padding: 15px 29px;
+  background-color: rgba(61, 155, 58, 0.395);
+  border: 2px solid #3d9b3a;
+  border-radius: 45px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+}
+.botao-transparente {
+  padding: 15px 29px;
+  background: transparent;
+  border: 2px solid #ffffff;
+  border-radius: 45px;
+  color: #ffffff;
+  font-size: 16px;
+  line-height: 29px;
+  white-space: nowrap;
+}
+
+.botao-transparente:hover, .login-botao:hover{
+  background-color: #ffffff7d;
+}
+.botao-verde:hover{
+  background-color: rgba(61, 155, 58, 0.718);;
+}
+.registrese-botao:hover{
+  background-color: #ffffffa0;
+}
+.modo:hover{
+  color: rgb(38, 110, 36);;
+}
+
+.fundo-blur {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  padding: 15px 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.73);
+  border-radius: 50px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 18px;
+  white-space: nowrap;
+}
+
+#pos{
+  top: 300px;
+  left: 880px;
+}
+#posi{
+  top: 438px;
+  left: 1000px;
+}
+
+/*Login e registro*/
+
+.fundo-login{
+  display: flex;
+  flex-direction: column; 
+  margin-bottom: 80px;
+  border-radius: 30px;
+  background-color:rgba(198, 198, 198, 0.42);
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+  width: 450px;
+  box-shadow: 0px 6px 4px -2px rgba(0, 0, 0, 0.5);
+  padding: 50px 0;
+
+}
+.fundo-login form{
+  text-align: center;
+}
+.fundo-login img{
+  display: flex;
+  width: 200px;
+  height: 100px;
+  margin-bottom: 30px;
+}
+
+.content{
+  border: 1px solid;
+  margin-bottom: 20px;
+  border-radius: 50px;
+  padding: 15px 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 80%;
+}
+
+.two-contents{
+  margin-left: 45px;
+  display: flex;
+  border: 1px solid;
+  margin-bottom: 20px;
+  border-radius: 50px;
+  padding: 15px 10px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  background-color: white;
+  gap: 150px;
+}
+.two-contents input{
+  background-color: transparent;
+  border: none;
+}
+.fundo-login button{
+  padding: 15px 50px;
+  border: none;
+  border-radius: 50px;
+  background-color:rgba(61, 155, 58, 1);
+  color: white;
+  font-size: 16px;
+  box-shadow: 0 2px rgba(0, 0, 0, 0.159);
+  margin-top: 30px;
+}
+
+.fundo-login button:hover{
+  background-color: rgb(82, 190, 78);
+}
+
+#esqueci{
+  display: flex;
+  margin-left: 60px;
+  color: rgba(61, 155, 58, 1);
+  cursor: pointer;
+}
+#esqueci:hover{
+  color: rgb(40, 112, 37);
+}
+
+footer{
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  background-color: rgba(61, 155, 58, 1);
+  bottom: 0;
+  width: 100%;
+  height: 144px;
+  color: #ffffff;
+  padding: 0 550px 0 100px;
+}
+
+footer p{
+  font-size: 12px;
+}
+.fundo-ifba{
+  justify-content: center;
+  display: flex;
+  width: 80px;
+  height: 100px;
+  background-color: #ffffff;
+  border-radius: 40px;
+  padding: 5px;
+}
+
+
+.fundo-login i {
+  position: relative;
+  margin-right: 50px;
+  cursor: pointer;
+  color: #888; /* Cor do ícone */
+}
