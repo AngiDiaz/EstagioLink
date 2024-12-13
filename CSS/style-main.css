@@ -1,0 +1,415 @@
+:root {
+  --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+  overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  outline: 0;
+}
+
+body {
+  margin: 0 auto;
+  background: #ffffff;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 720px;
+  position: relative;
+  width: 1920px;
+  margin: 0 0 0 0;
+  padding: 10px 135px 10px 135px;
+  background: #3d9b3a;
+  z-index: 2;
+  border-radius: 0 0 53px 53px;
+  box-shadow: 0 14px 18.7px 0 rgba(0, 0, 0, 0.29);
+}
+.frame-two {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  width: 226px;
+  height: 160px;
+  padding: 24px 0 24px 0;
+  z-index: 3;
+  border-radius: 90px;
+}
+.frame-three {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  width: 199px;
+  padding: 10px 10px 10px 10px;
+  background: #ffffff;
+  z-index: 4;
+  border-radius: 50px;
+}
+.stage-link {
+  flex-shrink: 0;
+  position: relative;
+  width: 152px;
+  height: 93.408px;
+  background: url(./assets/images/cfa87857f3190fdba5fbb28d0dae9f38d4dbbb54.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 5;
+}
+.frame-four {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  gap: 47px;
+  position: relative;
+  width: 973px;
+  height: 108px;
+  z-index: 6;
+}
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: relative;
+  width: 406px;
+  padding: 10px 45px 10px 45px;
+  z-index: 7;
+}
+.quem-nos-somos-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  width: 316px;
+  padding: 10px 56px 10px 56px;
+  z-index: 8;
+}
+.quem-nos-somos {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  height: 29px;
+  color: rgba(255, 255, 255, 0.79);
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 9;
+}
+.login-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: relative;
+  width: 141px;
+  padding: 15px 39px 15px 39px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #ffffff;
+  z-index: 10;
+  border-radius: 45px;
+}
+.login {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  height: 29px;
+  color: #ffffff;
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 11;
+}
+.registre-se-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: relative;
+  width: 209px;
+  padding: 15px 39px 15px 39px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.28);
+  border: 1px solid #ffffff;
+  z-index: 12;
+  border-radius: 45px;
+}
+.registre-se {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  height: 29px;
+  color: #ffffff;
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 13;
+}
+.frame-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: absolute;
+  width: 2078px;
+  height: 1253px;
+  top: -16px;
+  left: -148px;
+  padding: 10px 10px 10px 10px;
+}
+.image {
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+  min-width: 0;
+  height: 1233px;
+  background: url(./assets/images/0c9e40d0-ac84-49e4-a220-cf298e557647.png)
+    no-repeat center;
+  background-size: cover;
+  z-index: 1;
+}
+.frame-2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 27px;
+  position: absolute;
+  width: 594px;
+  height: 436px;
+  top: 347px;
+  left: 95px;
+  z-index: 19;
+}
+.estudante-busca-oportunidades {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  width: 545px;
+  height: 333px;
+  color: #ffffff;
+  font-family: Inter, var(--default-font-family);
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: left;
+  z-index: 20;
+  -webkit-text-stroke: 1px rgba(117, 117, 117, 0);
+}
+.frame-3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 71px;
+  position: relative;
+  width: 580px;
+  height: 59px;
+  z-index: 21;
+}
+.frame-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  width: 276px;
+  padding: 18px 43px 18px 43px;
+  cursor: pointer;
+  background: rgba(61, 155, 58, 0.61);
+  border: 2px solid #3d9b3a;
+  z-index: 22;
+  border-radius: 50px;
+}
+.create-resume {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  width: 199px;
+  height: 24px;
+  color: #ffffff;
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 23;
+}
+.login-frame-4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  gap: 10px;
+  position: relative;
+  width: 233px;
+  padding: 18px 29px 18px 29px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #ffffff;
+  z-index: 24;
+  border-radius: 45px;
+}
+.search-internship {
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  height: 29px;
+  color: #ffffff;
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 29px;
+  text-align: left;
+  white-space: nowrap;
+  z-index: 25;
+}
+.frame-5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: absolute;
+  width: 567px;
+  height: 66px;
+  top: 418px;
+  left: 1206px;
+  padding: 21px 27px 21px 27px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.73);
+  z-index: 14;
+  overflow: hidden;
+  border-radius: 50px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.frame-input {
+  flex-shrink: 0;
+  position: absolute;
+  width: 567px;
+  height: 66px;
+  top: -1px;
+  left: -1px;
+  background: transparent;
+  border: none;
+  z-index: 16;
+  outline: none;
+}
+.difficulty-finding-internship {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  width: 513px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 15;
+}
+.button-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 10px;
+  position: absolute;
+  width: 556px;
+  height: 66px;
+  top: 544px;
+  left: 1362px;
+  padding: 21px 27px 21px 27px;
+  cursor: pointer;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.77);
+  opacity: 0.79;
+  z-index: 17;
+  overflow: hidden;
+  border-radius: 50px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.help-finding-ideal-internship {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-basis: auto;
+  position: relative;
+  width: 502px;
+  height: 24px;
+  color: rgba(255, 255, 255, 0.77);
+  font-family: Inter, var(--default-font-family);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 18;
+}

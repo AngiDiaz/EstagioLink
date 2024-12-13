@@ -1,0 +1,232 @@
+:root {
+    --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+      "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+      "Source Han Sans CN", sans-serif;
+  }
+  
+  body{
+    background-image: url("../IMAGENS/background-main-empresa.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header{
+    display: flex;
+    align-items: center;
+    gap: 383px;
+    position: absolute;
+    width: 100vw;
+    height: 180px;
+    top: 0;
+    padding: 10px 0 10px 78px;
+    background: #3d9b3a;
+    z-index: 13;
+    border-radius: 0 0 53px 53px;
+    box-shadow: 0 14px 18.7px 0 rgba(0, 0, 0, 0.29);
+  }
+  
+  .elementos-direita {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    width: 640px;
+    height: 494px;
+    top: 347px;
+    left: 95px;
+  }
+  .text-direita{
+    display: flex;
+    align-items: center;
+    width: 30vw;
+    height: 30vh;
+    color: #ffffff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 40px;
+    text-align: justify;
+    
+  }
+  .buttons-direita {
+    display: flex;
+    gap: 90px;
+  }
+
+  .botao-verde{
+    display: flex;
+    justify-content: center;
+    width: 280px;
+    padding: 18px 29px 18px 29px;
+    background: rgba(61, 155, 58, 0.61);
+    border: 2px solid #3d9b3a;
+    border-radius: 45px;
+    color: #ffffff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+  }
+  .botao-transparente {
+    display: flex;
+    width: 274px;
+    padding: 18px 29px 18px 29px;
+    background: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 45px;
+    color: #ffffff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    line-height: 29px;
+    white-space: nowrap;
+  }
+ 
+  .fundo-blur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 580px;
+    height: 40px;
+    padding: 21px 27px 21px 27px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.05)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.73);
+    border-radius: 50px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    color: rgba(255, 255, 255, 0.74);
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    white-space: nowrap;
+  }
+ 
+  #pos{
+    top: 460px;
+    left: 1107px;
+  }
+  #posi{
+    top: 638px;
+    left: 1216px;
+  }
+  
+  .connect-interns-companies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    width: 621px;
+    height: 24px;
+    color: rgba(255, 255, 255, 0.77);
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 4;
+  }
+  
+  .fundo-elk-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 199px;
+    padding: 10px 10px 10px 10px;
+    background: #ffffff;
+    border-radius: 50px;
+  }
+
+  
+  .modo {
+    gap: 26px;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 29px;
+    color: rgba(255, 255, 255, 0.79);
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 18;
+  }
+  .buttons-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 101px;
+    position: relative;
+    width: 451px;
+    z-index: 19;
+  }
+  .login-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 10px;
+    position: relative;
+    width: 141px;
+    padding: 15px 39px 15px 39px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #ffffff;
+    z-index: 20;
+    border-radius: 45px;
+  }
+  .login {
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 29px;
+    color: #ffffff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 21;
+  }
+  .registrese-frame {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 10px;
+    position: relative;
+    width: 209px;
+    padding: 15px 39px 15px 39px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.28);
+    border: 1px solid #ffffff;
+    z-index: 22;
+    border-radius: 45px;
+  }
+  .registre-se {
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 29px;
+    color: #ffffff;
+    font-family: Inter, var(--default-font-family);
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 29px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 23;
+  }
+  
