@@ -1,10 +1,14 @@
+html {
+    font-size: clamp(0.6rem, 2vw, 0.8rem) !important;/*tamanho min, ajuste e max*/
+  }
+
 html, body{
     width: 100%;
     height: 100%;
     margin: 0;
 }
 body{
-    font-size: 16px !important;
+    font-size: 1em !important;
 }
 
 header{
@@ -13,29 +17,26 @@ header{
 
 button{
     border-radius: 110em !important;
-    font-size: small !important;
 }
 
 .gradient-bars-main{
-    margin-left: 8em;
     white-space: nowrap;
-    font-size:14px;
     width: 25em;
     border-radius: 20em;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.144), rgba(255, 255, 255, 0.5))
 }
 .fundo-elk-logo{
+    display: flex;
     padding: 0.5em;
     align-items: center;
     background-color: white;
     margin-left: 6em;
-    height: 5em;
+    width: 7em;
+    height: 6em;
     overflow: hidden;
     border-radius: 7em;
 }
   
 .fundo-elk-logo a img{
-    height:100%;
-    width: 100%;
-    object-fit: contain;
+    height:auto;
 }
