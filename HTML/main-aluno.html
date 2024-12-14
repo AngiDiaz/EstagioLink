@@ -8,44 +8,50 @@
     <link rel="stylesheet" href="../CSS/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
+  <style>
+    body{
+      background-image: url('../IMAGENS/background-main-aluno.png');background-size: cover; background-repeat: no-repeat;
+    }
+  </style>
   <body>
-    <header class="container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 mb-4 shadow" style = "border-end-end-radius: 2em; border-bottom-left-radius: 2em; ">
-      <div class ="row align-items-center bg-white flex-nowrap">
-        <div class ="flex-shrink-1 col-md-2 align-items-center p-4 " style="background-color: aqua;">
-          <a href="#" class="text-decoration-none">
-            <img class=" img-fluid rounded"src="../IMAGENS/EstágioLink.png">
-          </a>
+    <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 mb-5 shadow" style = "border-end-end-radius: 2em; border-bottom-left-radius: 2em; ">
+      <div class ="row align-items-center flex-nowrap">
+        <div class ="row flex-shrink-1 align-items-center">
+          <div class="fundo-elk-logo">
+            <a href="#" class=" text-decoration-none">
+            <img class=" img-fluid"src="../IMAGENS/EstágioLink.png">
+            </a>
+          </div>
+          
         </div>
-        <div class = "col-6 text-center" style="background-color: rgb(255, 0, 0);">
+        <div class = "col-6 text-center">
           <a href="main-empresa.html" style = "color:white">Sou uma empresa</a>
         </div>
   
-        <div class="col-md-auto text-end flex-shrink-1" style="background-color: rgb(43, 0, 255);">
-          <button type="button" class="btn btn-outline-light">Login</button>
-          <button type="button" class="btn btn-light" style = "color: rgba(61, 155, 58, 1)">Registre-se</button>
+        <div class="col-md-auto text-end flex-shrink-1">
+          <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='paginas-login/aluno.html'">Login</button>
+          <button type="button" class="btn btn-light" style = "color: rgba(61, 155, 58, 1)" onclick="window.location.href='paginas-registro/aluno.html'">Registre-se</button>
         </div>
       </div>
 
     </header>
-    <div class = "container-fluid d-flex flex-nowrap text-white align-items-center bg-dark h-50" >
-      <div class = "row align-items-center m-2 h-100" style="background-color: rgb(119, 148, 153);">
-        <div class ="col-4" style="background-color: rgb(3, 213, 255);">
+    <div class = "container-fluid d-flex flex-nowrap text-white align-items-center h-50" >
+      <div class = "row flex-nowrap align-items-center m-2 h-100 w-100">
+        <div class ="col-5 ml-4">
           <h4>
             Você é um estudante em busca de oportunidades incríveis para impulsionar sua carreira? Nós temos a solução perfeita para você!
           </h4>
-          <div class="row justify-content-center justify-content-md-between mt-3">
-            <button class="btn btn-outline-light">Crie seu currículo</button>
-            <button class="btn btn-light" style = "color: rgba(61, 155, 58, 1)">Busque estágio</button>
+          <div class="row mt-3 align-items-center">
+            <button class="btn btn-outline-light mr-3 "onclick="window.location.href='paginas-formulario/aluno/dados-pessoais.html'">Crie seu currículo</button>
+            <button class="btn btn-light" style = "color: rgba(61, 155, 58, 1)"onclick="window.location.href='paginas-pesquisa/aluno.html'">Busque estágio</button>
           </div>
         </div>
-          <div class ="col h-100" style="background-color: rgb(255, 0, 13);">
-            <div class = "row text-center bg-info">
-              <div class="border border-light p-1  gradient-bars-main">
-                <span>Está com dificuldade para encontrar estágio?</span>
-              </div>
-              <div class="border border-light p-1 gradient-bars-main">
-                <span>A gente te ajuda a encontrar o estágio ideal!</span>
-              </div>
+          <div class ="col-5 h-100">
+            <div class="border border-light p-2 gradient-bars-main text-center my-5">
+              <span>Está com dificuldade para encontrar estágio?</span>
+            </div>
+            <div class="text-center border border-light p-2 gradient-bars-main" style ="margin-left: 18em">
+              <span>A gente te ajuda a encontrar o estágio ideal!</span>
             </div>
           </div>
       </div>

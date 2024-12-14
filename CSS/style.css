@@ -4,9 +4,6 @@ html, body{
     margin: 0;
 }
 body{
-    background-image: url('../IMAGENS/background-main-aluno.png');
-    background-size: cover;
-    background-repeat: no-repeat;
     font-size: 16px !important;
 }
 
@@ -20,7 +17,25 @@ button{
 }
 
 .gradient-bars-main{
-    width: 30em;
+    margin-left: 8em;
+    white-space: nowrap;
+    font-size:14px;
+    width: 25em;
     border-radius: 20em;
     background: linear-gradient(to top, rgba(255, 255, 255, 0.144), rgba(255, 255, 255, 0.5))
+}
+.fundo-elk-logo{
+    padding: 0.5em;
+    align-items: center;
+    background-color: white;
+    margin-left: 6em;
+    height: 5em;
+    overflow: hidden;
+    border-radius: 7em;
+}
+  
+.fundo-elk-logo a img{
+    height:100%;
+    width: 100%;
+    object-fit: contain;
 }
