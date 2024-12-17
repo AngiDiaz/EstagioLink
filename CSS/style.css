@@ -11,12 +11,15 @@ body{
     font-size: 1em !important;
 }
 
-header{
+header, footer{
     background-color: rgba(61, 155, 58, 1);
+    overflow: hidden;
 }
 
 button{
     border-radius: 110em !important;
+    background-color: rgba(61, 155, 58, 1);
+    color: white;
 }
 
 .gradient-bars-main{
@@ -39,4 +42,51 @@ button{
   
 .fundo-elk-logo a img{
     height:auto;
+}
+
+.fundo-ifba{
+    display: flex;
+    padding: 0.5em;
+    align-items: center;
+    background-color: white;
+    width: 5em;
+    height: 6em;
+    overflow: hidden;
+    border-radius: 7em;
+  }
+
+.login-registro-container{
+    width: 50rem;
+    max-width: 50vw;
+    height: 30rem;
+    border-radius: 3em;
+    background-color: rgba(198, 198, 198, 0.42)
+}
+.logi{
+    width: 15em;
+    height: auto;
+    overflow: hidden;
+}
+
+.navheader div{
+    border-radius: 0.2em;
+    padding: 0.5em;
+    margin-left: 2em;
+}
+.navheader div a{
+    color: white;
+    text-decoration: none ;
+}
+.navheader div:hover{
+    background-color: rgba(119, 14, 14, 0.518);
+    cursor: pointer;
+}
+.i{
+    justify-content: center;
+    list-style: none;
+    display: flex;
+    gap: 0.7rem;
+}
+.i li{
+    white-space: nowrap;
 }

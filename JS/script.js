@@ -1,11 +1,19 @@
-const togglePassword = document.getElementById("togglePassword");
-const passwordInput = document.getElementById("password");
+// Seleciona os elementos do formulário
+const layoutOptions = document.querySelectorAll('input[name="layout"]');
+const nextButton = document.getElementById('nextButton');
 
-togglePassword.addEventListener("click", function () {
-    // Alterna o tipo do campo de "password" para "text" e vice-versa
-    const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-    passwordInput.setAttribute("type", type);
-    
-    // Alterna o ícone entre "fa-eye" e "fa-eye-slash"
-    this.classList.toggle("fa-eye-slash");
-})
+// Habilita o botão somente se um layout for selecionado
+layoutOptions.forEach(option => {
+  option.addEventListener('change', () => {
+    nextButton.disabled = false;
+  });
+});
+
+// Adiciona a ação ao clicar no botão
+nextButton.addEventListener('click', () => {
+  const selectedLayout = document.querySelector('input[name="layout"]:checked');
+  if (selectedLayout) {
+    // Redireciona para a próxima página
+    window.location.href = `../../paginas-pesquisa/aluno.html?layout=${selectedLayout.value}`;
+  }
+});
