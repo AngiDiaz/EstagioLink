@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relato</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="icon" href="../../IMAGENS/ELKLogo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../CSS/style.css">
+    
+    <style>
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        .logo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            margin-right: 30%;
+        }
+        .logo img {
+            max-width: 100%;
+            height: auto;
+            max-height: 100%;
+        }
+        .content-left, .content-right {
+            flex: 0 0 20%;
+        }
+        .content-center {
+            flex: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header style="height: 20%;">
+        <div class="header-row">
+            <div class="logo" style="height: 50%;">
+                <a href="../main-aluno.html" class="text-decoration-none">
+                    <img class="img-fluid" src="../../IMAGENS/EstágioLink.png" alt="Logo">
+                </a>
+            </div>
+            <div class="content-center bg-danger">
+                Olá, Username
+            </div>
+            <div class="content-right bg-primary">
+                3 de 3
+            </div>
+        </div>
+    </header>
+    
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb" style="background: transparent;">
+            <li class="breadcrumb-item"><a href="../main-aluno.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Relato</li>
+        </ol>
+    </nav>
+
+    <h1>Relato Anônimo</h1>
+
+    <div class="alert alert-success" role="alert">
+        Asseguramos que todas as informações fornecidas aqui serão tratadas com o mais alto grau de confidencialidade. Seu anonimato é nossa prioridade absoluta.
+    </div>
+
+    <div style="width: 40%;"> 
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Empresa</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+                <option>Empresa 1</option>
+                <option>Empresa 2</option>
+                <option>Empresa 3</option>
+            </select>
+        </div>
+    </div>
+</body>
+</html>
