@@ -96,7 +96,7 @@ button{
     margin-bottom: 30px;
 }
 
-.fundologin input{
+.fundologin input, .inputformat{
     border: none;
     padding: 0.8em;
     border-radius: 3em;
