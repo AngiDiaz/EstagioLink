@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Aluno</title>
     <link rel="icon" href="../../IMAGENS/ELKLogo.png" type="image/x-icon"/>
-    <link rel = "stylesheet" type="text/css" href="../../CSS/style.css"/>
+    <link rel="stylesheet" href="../../CSS/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
@@ -24,51 +24,33 @@
           </div>
     
           <div class="col text-end flex-shrink-1 d-flex justify-content-end mr-4">
-            <button type="button" class="btn btn-light" style = "color: rgba(61, 155, 58, 1)" onclick="window.location.href='paginas-registro/aluno.html'">Registre-se</button>
+            <button type="button" class="btn btn-light" style = "color: rgba(61, 155, 58, 1)" onclick="window.location.href='../paginas-registro/aluno.html'">Registre-se</button>
           </div>
         </div>
   
     </header>
 
-    <div class="container-fluid shadow p-4 d-flex login-registro-container justify-content-center">
-        <div class="row bg-info ">
-            <div class = "col-12 p-5 bg-warning d-flex overflow-hidden justify-content-center flex-shrink-1">
-                <div class = "p-3 d-flex justify-content-center bg-dark overflow-hidden">
-                    <img class="img-fluid" src="../../IMAGENS/ELKLogo.png"></div>
-            </div>
-            <div class="col bg-danger">
-                <form class="w-100" action="../paginas-pesquisa/aluno.html">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Endereço de email</label>
-                    <input required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Senha</label>
-                    <input required type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-                </div>
-                <div class = "mt-4 d-flex justify-content-center ">
-                    <button type="submit" class="btn w-25">Entrar</button>
-                </div>
-                
-            </form>
-            </div>
-        </div>
+    <div class = "fundologin d-flex container py-5">
+        <img src="../../IMAGENS/ELKLogo.png"/>
+        <form action="../paginas-pesquisa/aluno.html">
+            <input name = "matricula" class = "form-control" type="number" placeholder="Número de matrícula" required>
+            <input name = "senha" class = "form-control" type="password" placeholder="Senha" required> 
+            <button class = "btn" type="submit">Entrar</button>
+        </form>
+    </div> 
+    
 
-    </div>
-       
-    <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
-        <div class="row align-items-center">
-            <div class ="col-2 flex-shrink-1 d-flex">
-                <div class="fundo-ifba">
-                    <img class=" img-fluid" src="../../IMAGENS/IFBALogo.png"/>
+        <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
+            <div class="row align-items-center">
+                <div class ="col-2 flex-shrink-1 d-flex">
+                    <div class="fundo-ifba">
+                        <img class=" img-fluid" src="../../IMAGENS/IFBALogo.png"/>
+                    </div>
+                </div>
+                <div class="col text-white text-center">
+                    <span>Copyright © 2024 EstágioLink, All rights reserved</span>
                 </div>
             </div>
-            <div class="col text-white text-center">
-                <span>Copyright © 2024 EstágioLink, All rights reserved</span>
-            </div>
-        </div>
-    </footer>
-
-    <script src="../../JS/script.js"></script>
+        </footer>
 </body>
 </html>
