@@ -104,3 +104,36 @@ button{
     width: 17em !important;
     margin-bottom: 1em;
 }
+
+.alinhar{
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: justify;
+}
+
+.botaovisual button{
+    display: flex;
+    background-color: transparent !important;
+    color: black;
+    justify-content:space-between;
+    width: 13.5em;
+}
+
+.comentario{
+    display: flex;
+    background-color: rgba(224, 224, 224, 1);
+    border-radius: 3em;
+    flex-direction: column;
+    padding: 1em 3em;
+    margin: 2em;
+}
+.comentario .linha{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 1em;
+}
+.comentario img{
+    width: 3em;
+}
