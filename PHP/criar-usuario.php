@@ -16,6 +16,6 @@
     $telefone = $_POST['telefone'];
     $ramo = $_POST['ramo'];
     $senha = $_POST['senha'];
-    header("Location: ../HTML/paginas-formulario/aluno/dados-pessoais.html");
+    header("Location: ..\HTML\paginas-formulario\empresa\informacoes-empresa.html");
     exit();
 ?>
