@@ -1,21 +1,6 @@
 <?php
 include 'config.php';
 
-function cadastrar_usuario($nome, $email, $sexo,$senha)
-{
-    $conn = conectar();
-    $sql = "INSERT INTO  usuario (nome, email, sexo,senha) VALUES (:NOME,:EMAIL,:SEXO,:SENHA)";
-
-    $instrucao = $conn->prepare($sql);
-
-    $instrucao->bindParam(":NOME",$nome);
-    $instrucao->bindParam(":EMAIL",$email);
-    $instrucao->bindParam(":SEXO",$sexo);
-    $instrucao->bindParam(":SENHA",$senha);
-
-    $instrucao->execute();
-    header('Location:index.php');
-}
 
 function atualizar_usuario($id_usuario, $nome, $email, $sexo)
 {

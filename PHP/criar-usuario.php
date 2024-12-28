@@ -1,21 +1,42 @@
 <?php
+    
+include 'conexao-banco.php';
     $nome = $_POST['nome'];
     $matricula = $_POST['matricula'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    header("Location: ../HTML/paginas-formulario/aluno/dados-pessoais.html");
-    exit();
-?>
+    $tipo = $_POST['tipo'];
 
-<?php
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $razao = $_POST['razao'];
-    $cnpj = $_POST['cnpj'];
-    $endereco = $_POST['endereco'];
-    $telefone = $_POST['telefone'];
-    $ramo = $_POST['ramo'];
-    $senha = $_POST['senha'];
-    header("Location: ..\HTML\paginas-formulario\empresa\informacoes-empresa.html");
-    exit();
+    if($tipo==0){
+        $conn = conectar();
+        $sql = "INSERT INTO  usuario_aluno (nome, email, matricula, senha) VALUES (:NOME,:EMAIL,:MATRICULA,:SENHA)";
+
+        $instrucao = $conn->prepare($sql);
+
+        $instrucao->bindParam(":NOME",$nome);
+        $instrucao->bindParam(":EMAIL",$email);
+        $instrucao->bindParam(":MATRICULA",$matricula);
+        $instrucao->bindParam(":SENHA",$senha);
+
+        $instrucao->execute();
+        header("Location: ../HTML/paginas-formulario/aluno/dados-pessoais.html");
+        exit();
+    }
+    else{
+        $conn = conectar();
+        $sql = "INSERT INTO  usuario_empresa (nome, email, senha) VALUES (:NOME,:EMAIL,:SENHA)";
+
+        $instrucao = $conn->prepare($sql);
+
+        $instrucao->bindParam(":NOME",$nome);
+        $instrucao->bindParam(":EMAIL",$email);
+        $instrucao->bindParam(":SENHA",$senha);
+
+        $instrucao->execute();
+        header("Location: ../HTML/paginas-formulario/aluno/dados-pessoais.html");
+        exit();
+        header("Location: ../HTML/paginas-formulario/empresa/informacoes-empresa.html");
+        exit();
+    }
+    
 ?>
