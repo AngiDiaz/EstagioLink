@@ -3,48 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Registro Aluno</title>
     <link rel="icon" href="../../IMAGENS/ELKLogo.png" type="image/x-icon"/>
-    <link rel = "stylesheet" type="text/css" href="../../CSS/style.css"/>
-    <title>Registre-se</title>
+    <link rel="stylesheet" href="../../CSS/style.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-    <header>
-        <div class="fundo-elk-logo">
-            <a href = "../main-empresa.html"><img src = "../../IMAGENS/ELKLogo.png"/></a>
+    <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 mb-5 shadow" style = "border-end-end-radius: 2em; border-bottom-left-radius: 2em; ">
+        <div class ="row align-items-center flex-nowrap">
+          <div class ="row flex-shrink-1 align-items-center">
+            <div class="fundo-elk-logo">
+              <a href="../main-aluno.html" class=" text-decoration-none">
+              <img class=" img-fluid"src="../../IMAGENS/EstágioLink.png">
+              </a>
+            </div>
+            
+          </div>
+          <div class = "col-6 flex-shrink-1 text-center ml-4">
+            <a href="../main-aluno.html" style = "color:white">Sou estudante</a>
+          </div>
+    
+          <div class="col text-end flex-shrink-1 d-flex justify-content-end mr-4">
+            <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='../paginas-login/empresa.html'">Login</button>
+          </div>
         </div>
-        <div class="buttons-header">
-            <a href = "../paginas-login/empresa.html"><button class="login-botao">Login</button></a>
-            <a href = "../paginas-registro/empresa.html"><button class="registrese-botao">Registre-se</button></a>
+  
     </header>
 
-       <div class = "fundo-login">
+    <div class = "fundologin d-flex container py-5">
         <img src="../../IMAGENS/ELKLogo.png"/>
         <form action="../../PHP/criar-usuario.php" method="POST">
-            <input class = "content" type="text" placeholder="Nome de usuário" required>
-            <input class = "content" type="e-mail" placeholder="E-mail" required>
-            <input class = "content" type="text" placeholder="Razão Social" required>
-            <input class = "content" type="text" placeholder="CNPJ" required>
-            <input class = "content" type="text" placeholder="Endereço" required>
-            <input class = "content" type="tel" placeholder="Telefone" required>
-            <input class = "content" type="tel" placeholder="Ramo de atividade" required>
-            <div class = "two-contents">
-                <input id="password"type="password" placeholder="Senha" required>
-                <i class="far fa-eye" id="togglePassword"></i>
-            </div>  
-            
-            <a href="../paginas-pesquisa/empresa.html" type="submit"><button>Registre-se</button></a>
+            <input name = "nome" class = "form-control" type="text" placeholder="Nome da empresa" required>
+            <input name = "email" class = "form-control" type="email" placeholder="Email" required>
+            <input name = "senha" class = "form-control" type="password" placeholder="Senha" required> 
+            <button onclick="window.location.href='../paginas-login/empresa.html'" class = "btn" type="submit">Registre-se</button>
         </form>
-        
-        
-        </div> 
+    </div> 
     
 
-    <footer>
-        <div class ="fundo-ifba"><img src="../../IMAGENS/IFBALogo.png"/></div>
-        <p>Copyright © 2024 EstágioLink, All rights reserved</p>
-    </footer>
-
-    <script src="../../JS/script.js"></script>
+        <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
+            <div class="row align-items-center">
+                <div class ="col-2 flex-shrink-1 d-flex">
+                    <div class="fundo-ifba">
+                        <img class=" img-fluid" src="../../IMAGENS/IFBALogo.png"/>
+                    </div>
+                </div>
+                <div class="col text-white text-center">
+                    <span>Copyright © 2024 EstágioLink, All rights reserved</span>
+                </div>
+            </div>
+        </footer>
 </body>
 </html>
