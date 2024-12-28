@@ -37,7 +37,7 @@ function get_usuarios(){
 function get_usuario($id_usuario)
 {
   $conn = conectar();
-  $sql = "SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO";
+  $sql = "SELECT * FROM elk WHERE id_usuario = :ID_USUARIO";
   $instrucao = $conn->prepare($sql);
   $instrucao->bindParam(":ID_USUARIO",$id_usuario);
 
@@ -48,7 +48,7 @@ function get_usuario($id_usuario)
 
 function  excluir_usuario($id_usuario){
     $conn = conectar();
-    $sql = "DELETE FROM usuario WHERE id_usuario = :ID_USUARIO";
+    $sql = "DELETE FROM elk WHERE id_usuario = :ID_USUARIO";
     $instrucao = $conn->prepare($sql);
     $instrucao->bindParam(":ID_USUARIO",$id_usuario);
     $retorno = $instrucao->execute();
