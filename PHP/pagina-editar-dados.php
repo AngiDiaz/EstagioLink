@@ -37,6 +37,7 @@
     $id_usuario = filter_input(INPUT_GET,'id_usuario',FILTER_SANITIZE_NUMBER_INT);
     $result = get_usuario($id_usuario);
     $linha = $result[0];
+    $excluir_usuario = excluir_usuario($id_usuario);
     ?>
 
     <h2> Alterar informações do usuário</h2>
@@ -69,6 +70,8 @@
 
             </fieldset>
             <input type="text" id="senha" name="senha" value="<?php echo $linha['senha'];?>"><br>
+            <input type="submit" value="Excluir usuario">
+            <input type="button" id="excluir" name="excluir" value="<?php echo $excluir_usuario['excluir'];?>"><br>
             <input type="submit" value="Confirma alteração">
         </form>
         <br>
