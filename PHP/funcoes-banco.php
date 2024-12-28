@@ -1,18 +1,18 @@
 <?php
-include 'config.php';
+include 'conexao-banco.php';
 
 
-function atualizar_usuario($id_usuario, $nome, $email, $sexo)
+function atualizar_usuario($id_usuario, $nome, $email)
 {
   $conn = conectar();
-  $sql = 'UPDATE usuario SET nome = :NOME, email = :EMAIL, sexo = :SEXO
+  $sql = 'UPDATE usuario SET nome = :NOME, email = :EMAIL
   WHERE id_usuario=:ID_USUARIO';
 
   $instrucao = $conn->prepare($sql);
   $instrucao->bindParam(":ID_USUARIO",$id_usuario);
   $instrucao->bindParam(":NOME",$nome);
   $instrucao->bindParam(":EMAIL",$email);
-  $instrucao->bindParam(":SEXO",$sexo);
+  
   $instrucao->execute();
 $retorno = $instrucao->execute();
   if($retorno){
@@ -25,7 +25,7 @@ $retorno = $instrucao->execute();
 
 function get_usuarios(){
     $conn = conectar();
-    $sql = 'SELECT * FROM usuario ORDER BY nome';
+    $sql = 'SELECT * FROM elk ORDER BY nome';
 
     $instrucao = $conn->prepare($sql);
     $instrucao->execute();
