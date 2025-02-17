@@ -17,3 +17,20 @@ nextButton.addEventListener('click', () => {
     window.location.href = `../../paginas-pesquisa/aluno.html?layout=${selectedLayout.value}`;
   }
 });
+
+function previewFoto(event){
+  var reader = new FileReader();
+  var output = document.getElementById('foto');
+  if(event.target.files && event.target.files[0]){
+  reader.onload = function(){
+    
+    output.src = reader.result;
+    output.style.display = 'flex';
+  }
+  reader.readAsDataURL(event.target.files[0]);
+
+  } else{
+    output.style.display = 'none';
+  }
+
+}
