@@ -1,16 +1,16 @@
 <?php
 session_start();
-
+include 'banco.php';
 class UserLogin{
 
   function logar($nome, $email, $senha){
-include 'config.php';
+/*include 'config.php';*/
     $conn = conectar();
 
     $sql = "SELECT * FROM usuario WHERE nome = :NOME AND email = :EMAIL AND senha = :SENHA";
     $instrucao = $conn->prepare($sql);
     $instrucao->bindParam(":NOME",$nome);
-    $instrucao->bindParam(":EMAIL",$email)
+    $instrucao->bindParam(":EMAIL",$email);
     $instrucao->bindParam(":SENHA",$senha);
     $instrucao->execute();
 
@@ -27,14 +27,14 @@ include 'config.php';
 
   function sair(){
     session_destroy();
-    header("Location:index.php");
+    header("Location:../HTML/login.html");
     exit;
   }
 }
 
 function verificarSessao(){
   if(!isset($_SESSION['logado'])){
-    header("Location:../HTML/main-empresa.html");
+    header("Location:../HTML/main-aluno.html");
   }
 }
  ?>

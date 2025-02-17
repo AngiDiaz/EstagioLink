@@ -1,33 +1,35 @@
 <?php
-$id_usuario = $_POST['codigo'];
-$nome = $_POST['nome'];
-   $email = $_POST['email'];
-   $sexo = $_POST['sexo'];
+  $id_usuario = $_POST['codigo'];
+  $nome = $_POST['nome'];
+  $email = $_POST['email'];
+  $senha = $_POST['senha'];
+  $valor = $_POST['valor'];
+  include '../raiz.php';
 
 
-   $novo_nome_foto = '';
+  $novo_nome_foto = '';
 
-   if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0){
-     $foto_temp = $_FILES['foto']['tmp_name'];
-     $extensao = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
+  if(isset($_FILES['foto']) && $_FILES['foto']['error'] == 0){
+    $foto_temp = $_FILES['foto']['tmp_name'];
+    $extensao = strtolower(pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION));
 
-     $nome_arquivo = pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME);
-     $nome_arquivo_limpo = preg_replace('/[^a-zA-Z0-9-_]//', '_', $nome_arquivo);
-     $novo_nome_foto = uniqid() . '_' . $nome_arquivo_limpo . '.' . $extensao;
+    $nome_arquivo = pathinfo($_FILES['foto']['name'], PATHINFO_FILENAME);
+    $nome_arquivo_limpo = preg_replace('/[^a-zA-Z0-9-_]//', '_', $nome_arquivo);
+    $novo_nome_foto = uniqid() . '_' . $nome_arquivo_limpo . '.' . $extensao;
 
-     $diretorio = __DIR__ . '\images\\';
-     $caminho_foto = $diretorio . $novo_nome_foto;
+    $diretorio = getRaiz() . '\IMAGENS\\';
+    $caminho_foto = $diretorio . $novo_nome_foto;
 
-     $fotos_existentes = glob($diretorio . $email . '.*');
-     foreach ($fotos_existentes as $foto_antiga) {
-       unlink($foto_antiga);
-     }
+    $fotos_existentes = glob($diretorio . $email . '.*');
+    foreach ($fotos_existentes as $foto_antiga) {
+      unlink($foto_antiga);
+    }
 
-     if(move_uploaded_file($foto_temp, $caminho_foto)){
-       echo "Foto enviada com sucesso.<br>";
-     }else {
-       echo "Erro ao enviar a foto.<br>";
-     }
+    if(move_uploaded_file($foto_temp, $caminho_foto)){
+      echo "Foto enviada com sucesso.<br>";
+    }else {
+      echo "Erro ao enviar a foto.<br>";
+    }
 
    }else{
      echo "Nenhuma foto enviada.<br>";
@@ -39,5 +41,5 @@ $nome = $_POST['nome'];
 
    include 'banco.php';
 
-   atualizar_usuario($id_usuario, $nome, $email, $sexo, $novo_nome_foto);
+   atualizar_usuario($id_usuario, $email, $senha, $novo_nome_foto, );
    ?>

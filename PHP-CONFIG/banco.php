@@ -38,7 +38,7 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
     
 }
 
-function atualizar_usuario($id_usuario, $nome, $email, $foto = null, $valor, $tipo)
+function atualizar_usuario($id_usuario, $email, $senha, $foto = NULL)
 {
   $conn = conectar();
   if($tipo == 0){
@@ -83,22 +83,23 @@ if($foto){
   }
 }
 
-function get_usuarios(){
+function get_usuarios($tipo){
     $conn = conectar();
-    $sql = "SELECT * FROM usuario ORDER BY nome";
+    $sql = "SELECT * FROM usuario WHERE tipo = :TIPO ORDER BY nome";
     $instrucao = $conn->prepare($sql);
+    $instrucao->bindParam(":TIPO", $tipo);
     $instrucao->execute();
 
     $result = $instrucao->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
 
-function get_usuario($id_usuario)
+function get_usuario($email)
 {
   $conn = conectar();
-  $sql = "SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO";
+  $sql = "SELECT * FROM usuario WHERE email = :EMAIL";
   $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":ID_USUARIO",$id_usuario);
+  $instrucao->bindParam(":EMAIL",$email);
 
   $instrucao->execute();
   $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
