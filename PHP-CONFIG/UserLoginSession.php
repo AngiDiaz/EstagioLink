@@ -16,9 +16,9 @@ class UserLogin{
 
     if($instrucao->rowCount() > 0){
       $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
-      $_SESSION['logado'] = $result[0]['nome'];
+      $_SESSION['logado'] = $result[0]['id_usuario'];
       //armazena cookie:
-       setcookie('usernameppa', $_SESSION['logado'], time()+(86400*30), "/");
+       setcookie('id_usuario', $_SESSION['logado'], time()+(86400*30), "/");
       return true;
     }else{
       return false;

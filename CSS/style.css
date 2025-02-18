@@ -16,6 +16,11 @@ header, footer{
     overflow: hidden;
 }
 
+footer{
+    position: absolute !important;
+    bottom: 0 !important;
+}
+
 button{
     border-radius: 110em !important;
     background-color: rgba(61, 155, 58, 1);

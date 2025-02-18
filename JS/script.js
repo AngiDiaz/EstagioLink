@@ -1,22 +1,5 @@
-// Seleciona os elementos do formulário
-const layoutOptions = document.querySelectorAll('input[name="layout"]');
-const nextButton = document.getElementById('nextButton');
+document.addEventListener('DOMContentLoaded', function () {
 
-// Habilita o botão somente se um layout for selecionado
-layoutOptions.forEach(option => {
-  option.addEventListener('change', () => {
-    nextButton.disabled = false;
-  });
-});
-
-// Adiciona a ação ao clicar no botão
-nextButton.addEventListener('click', () => {
-  const selectedLayout = document.querySelector('input[name="layout"]:checked');
-  if (selectedLayout) {
-    // Redireciona para a próxima página
-    window.location.href = `../../paginas-pesquisa/aluno.html?layout=${selectedLayout.value}`;
-  }
-});
 
 function previewFoto(event){
   var reader = new FileReader();
@@ -34,3 +17,42 @@ function previewFoto(event){
   }
 
 }
+
+function atualizarFoto() {
+  // Faz uma requisição ao PHP
+  fetch('../PHP-CONFIG/fotoevent.php')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro na requisição');
+                }
+                return response.text(); // Recebe os dados como texto
+            })
+            .then(dados => {
+                console.log("Dados recebidos:", dados); // Depuração
+
+                // Divide a string usando o delimitador "|"
+                const [caminhoFoto, nomeUsuario] = dados.split('|');
+
+                // Atualiza o src da imagem no HTML
+                const fotoUsuario = document.getElementById('fotoUsuario');
+                if (fotoUsuario) {
+                    fotoUsuario.src = caminhoFoto;
+                } else {
+                    console.error('Elemento com ID "fotoUsuario" não encontrado.');
+                }
+
+                // Atualiza o conteúdo do span com o nome do usuário
+                const spanNomeUsuario = document.getElementById('nomeUsuario');
+                if (spanNomeUsuario) {
+                    spanNomeUsuario.textContent = `Bem-vindo, ${nomeUsuario}`;
+                } else {
+                    console.error('Elemento com ID "nomeUsuario" não encontrado.');
+                }
+            })
+            .catch(error => console.error('Erro ao buscar os dados:', error));
+    }
+
+// Executa a função quando a página carregar
+window.onload = atualizarFoto();
+
+});

@@ -2,8 +2,10 @@
   $id_usuario = $_POST['codigo'];
   $nome = $_POST['nome'];
   $email = $_POST['email'];
-  $senha = $_POST['senha'];
+  $senha = $_POST['nova_senha'];
+  $senha_antiga = $_POST['senha'];
   $valor = $_POST['valor'];
+  $tipo = $_POST['tipo'];
   include '../raiz.php';
 
 
@@ -41,5 +43,16 @@
 
    include 'banco.php';
 
-   atualizar_usuario($id_usuario, $email, $senha, $novo_nome_foto, );
+   $result = get_usuario($id_usuario);
+   $linha = $result[0];
+   if($linha['senha']==$senha_antiga){
+    atualizar_usuario($id_usuario, $email, $senha, $novo_nome_foto);
+    header("Location: ../HTML/editar_usuarios.php");
+   }else{
+   
+    
+      header("Location: ../HTML/editar_usuarios.php?erro=senha_incorreta");
+      exit(); // Encerra a execução do script
+   }
+
    ?>

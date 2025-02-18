@@ -10,10 +10,7 @@
 
     if($user->logar($nome, $email, $senha) == true){
       if(isset($_SESSION['logado'])){
-        $result = get_usuario($email);
-        $linha = $result[0];
-        $id = $linha['id_usuario'];
-        header('Location:../HTML/lista-empresas.php?id_usuario='.$id.'');
+        header('Location:../HTML/listar-usuarios.php?');
         
       }else{
         header('Location:../HTML/login.html');

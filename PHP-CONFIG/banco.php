@@ -5,9 +5,7 @@ include 'config.php';
 function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
 {
     $conn = conectar();
-
     if($tipo == 0){
-
       $sql = "INSERT INTO  usuario (nome, email, matricula, senha, foto, tipo) VALUES (:NOME,:EMAIL,:MATRICULA,:SENHA, :FOTO, :TIPO)";
       $instrucao = $conn->prepare($sql);
 
@@ -18,8 +16,6 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
       $instrucao->bindParam(":FOTO", $foto);
       $instrucao->bindParam(":TIPO", $tipo);
       $instrucao->execute();
-      header('Location:../HTML/paginas-login/aluno.html');
-
     }else if($tipo == 1){
       $sql = "INSERT INTO  usuario (nome, email, cnpj, senha, foto, tipo) VALUES (:NOME,:EMAIL,:CNPJ,:SENHA, :FOTO, :TIPO)";
       $instrucao = $conn->prepare($sql);
@@ -27,13 +23,12 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
       $instrucao->bindParam(":NOME",$nome);
       $instrucao->bindParam(":EMAIL",$email);
       $instrucao->bindParam(":CNPJ",$valor);
-      $instrucao->bindParam(":SENHA",$senha);                 
-      $instrucao->bindParam(":FOTO",$foto);
+      $instrucao->bindParam(":SENHA",$senha);
+      $instrucao->bindParam(":FOTO", $foto);
       $instrucao->bindParam(":TIPO", $tipo);
       $instrucao->execute();
-      header('Location:../HTML/paginas-login/empresa.html');
-      
     }
+    header('Location:../HTML/login.html');
 
     
 }
@@ -41,46 +36,24 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
 function atualizar_usuario($id_usuario, $email, $senha, $foto = NULL)
 {
   $conn = conectar();
-  if($tipo == 0){
     if($foto){
       $sql = 'UPDATE usuario SET email = :EMAIL, senha = :SENHA, foto = :FOTO
       WHERE id_usuario=:ID_USUARIO';
+      $instrucao = $conn->prepare($sql);
+      $instrucao->bindParam(":ID_USUARIO",$id_usuario);
+      $instrucao->bindParam(":EMAIL",$email);
+      $instrucao->bindParam(":SENHA",$senha);
+      $instrucao->bindParam(":FOTO", $foto);
+      $instrucao->execute();
     }else{
       $sql = 'UPDATE usuario SET email = :EMAIL, senha = :SENHA
       WHERE id_usuario=:ID_USUARIO';
+      $instrucao = $conn->prepare($sql);
+      $instrucao->bindParam(":ID_USUARIO",$id_usuario);
+      $instrucao->bindParam(":EMAIL",$email);
+      $instrucao->bindParam(":SENHA",$senha);
+      $instrucao->execute();
     }
-    $instrucao->bindParam(":MATRICULA",$valor);
-
-  }else if($tipo == 1){
-    if($foto){
-      $sql = 'UPDATE usuario SET email = :EMAIL, senha = :SENHA, foto = :FOTO
-      WHERE id_usuario=:ID_USUARIO';
-    }else{
-      $sql = 'UPDATE usuario SET email = :EMAIL, senha = :SENHA
-      WHERE id_usuario=:ID_USUARIO';
-    }
-    $instrucao->bindParam(":CNPJ",$valor);
-  }
-
-  $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":ID_USUARIO",$id_usuario);
-  $instrucao->bindParam(":NOME",$nome);
-  $instrucao->bindParam(":EMAIL",$email);
-  $instrucao->bindParam(":SENHA",$senha);
-  $instrucao->bindParam(":TIPO",$tipo);
-if($foto){
-  $instrucao->bindParam(":FOTO", $foto);
-}
-
-  $instrucao->execute();
-  $retorno = $instrucao->execute();
-
-  if($retorno){
-      header('Location:home.php');
-  }
-  else{
-      echo "Erro ao atualizar o usuário de id = ".$id_usuario;
-  }
 }
 
 function get_usuarios($tipo){
@@ -94,12 +67,12 @@ function get_usuarios($tipo){
     return $result;
 }
 
-function get_usuario($email)
+function get_usuario($id_usuario)
 {
   $conn = conectar();
-  $sql = "SELECT * FROM usuario WHERE email = :EMAIL";
+  $sql = "SELECT * FROM usuario WHERE id_usuario = :ID_USUARIO";
   $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":EMAIL",$email);
+  $instrucao->bindParam(":ID_USUARIO",$id_usuario);
 
   $instrucao->execute();
   $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
@@ -118,6 +91,16 @@ function  excluir_usuario($id_usuario){
     else{
         echo "Erro ao pagar o usuário de id = ".$id_usuario;
     }
+}
+
+function getSenha($id_usuario){
+  $conn = conectar();
+  $sql = "SELECT senha FROM usuario WHERE id_usuario = :ID_USUARIO";
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam("ID_USUARIO", $id_usuario);
+  $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
+  return $result;
+
 }
 
 ?>
