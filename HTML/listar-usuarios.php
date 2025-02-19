@@ -7,30 +7,9 @@
     <link rel = "stylesheet" type="text/css" href="../CSS/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
-    <!-- script para os icones -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <!--<style>
-      .container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-      }
-      .item{
-        text-align: center;
-        margin: 10px;
-      }
-      .item img{
-        display: block;
-        margin: 0 auto;
-      }
-      .item a {
-        display: block;
-        margin: 5px;
-      }
-    </style>!-->
+    
 </head>
 
 <body>
@@ -38,7 +17,7 @@
     <div class ="row align-items-center flex-nowrap">
       <div class ="row flex-shrink-1 align-items-center">
         <div class="fundo-elk-logo">
-          <a href="main-aluno.html" class=" text-decoration-none">
+          <a href="../HTML/main-aluno.html" class=" text-decoration-none">
           <img class=" img-fluid"src="../IMAGENS/EstágioLink.png">
           </a>
         </div>

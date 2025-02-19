@@ -7,5 +7,6 @@ CREATE TABLE usuario(
     matricula INT,                    -- Matricula para o aluno
     cnpj INT,                                  -- CNPJ para empresa
     senha VARCHAR(255) NOT NULL,                -- Senha do usuário (criptografada)
-    tipo INT NOT NULL
+    tipo INT NOT NULL,
+    foto VARCHAR(255)
 );

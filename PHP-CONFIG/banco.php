@@ -13,7 +13,9 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
       $instrucao->bindParam(":EMAIL",$email);
       $instrucao->bindParam(":MATRICULA",$valor);
       $instrucao->bindParam(":SENHA",$senha);
-      $instrucao->bindParam(":FOTO", $foto);
+      if($foto){
+        $instrucao->bindParam(":FOTO", $foto);
+      }
       $instrucao->bindParam(":TIPO", $tipo);
       $instrucao->execute();
     }else if($tipo == 1){
@@ -24,7 +26,9 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
       $instrucao->bindParam(":EMAIL",$email);
       $instrucao->bindParam(":CNPJ",$valor);
       $instrucao->bindParam(":SENHA",$senha);
-      $instrucao->bindParam(":FOTO", $foto);
+      if($foto){
+        $instrucao->bindParam(":FOTO", $foto);
+      }
       $instrucao->bindParam(":TIPO", $tipo);
       $instrucao->execute();
     }

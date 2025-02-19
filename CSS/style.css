@@ -1,5 +1,5 @@
 html {
-    font-size: clamp(0.6rem, 2vw, 0.8rem) !important;/*tamanho min, ajuste e max*/
+    font-size: clamp(0.6rem, 2vw, 1rem) !important;/*tamanho min, ajuste e max*/
   }
 
 html, body{

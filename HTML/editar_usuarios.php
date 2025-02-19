@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <title>Edição de usuário</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/edit.css">
     <link rel="icon" href="../IMAGENS/ELKLogo.png" type="image/x-icon"/>
     <link rel = "stylesheet" type="text/css" href="../CSS/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -24,11 +23,11 @@
             
           </div>
           <div class = "col flex-grow d-flex ml-4 justify-content-end">
-            <span style = "color:white">Olá [username]</span>
+            <span id = "nomeUsuario" style = "color:white">Olá [username]</span>
           </div>
     
           <div class=" col-lg-1 col-2 d-flex justify-content-end flex-shrink-12">
-            <img class="img-fluid" src = "../IMAGENS/foto-perfil.png">
+            <img id = "fotoUsuario" class="img-fluid" src = "../IMAGENS/foto-perfil.png">
           </div>
         </div>
         
@@ -70,17 +69,17 @@
             <label for="senha">Senha:</label>
             <input class = "form-control" type="password" id="senha" name="senha"><br>
             <label for="nova_senha">Nova Senha:</label>
-            <input class = "form-control" type="password" id="nova_senha" name="nova_senha" value="<?php echo $linha['senha'];?>">
+            <input class = "form-control" type="password" id="nova_senha" name="nova_senha">
             <br>
-            <img id="foto_atual" src="../IMAGENS/<?php echo $linha['foto'];?>" alt="Foto Atual" width="100em">
+            <img id="foto" src="../IMAGENS/<?php echo $linha['foto'];?>" alt="Foto de Perfil" width="100em">
 
-            <input type="file" id="foto" name="foto" accept="image/png, image/jpeg" onchange="previewFoto(event)">
+            <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/jpg" onchange="previewFoto(event)">
             <br><br>
-            <input type="submit" value="Salvar">
+            <button class = "btn bg-warning" type="submit">Salvar</button>
         </form>
         <br>
 
-        <button onclick="window.location.href='../PHP-CONFIG/lista-empresas.php'" class = "btn" type="submit">Voltar</button>
+        <button onclick="window.location.href='listar-usuarios.php'" class = "btn" type="submit">Voltar</button>
     </div>
 
     <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">

@@ -4,7 +4,7 @@ function conectar()
 {
 
 
-    $conn = new PDO ("mysql:dbname=elk;host=localhost","root","3041");
+    $conn = new PDO ("mysql:dbname=elk;host=localhost","root","aluno");
     return $conn;
 
 }
