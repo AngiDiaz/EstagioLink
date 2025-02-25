@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Página Inicial</title>
-    <link rel="icon" href="../IMAGENS/ELKLogo.png" type="image/x-icon"/>
-    <link rel = "stylesheet" type="text/css" href="../CSS/style.css"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    
-</head>
+  <head>
+      <meta charset="utf-8" />
+      <title>Página Inicial</title>
+      <link rel="icon" href="../IMAGENS/ELKLogo.png" type="image/x-icon"/>
+      <link rel = "stylesheet" type="text/css" href="../CSS/style.css"/>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">    
+  </head>
 
-<body>
+  <body>
+    <?php
+      include '../PHP-CONFIG/UserLoginSession.php';
+      verificarSessao();
+      $id_usuario = $_COOKIE['id_usuario'];
+      $result = get_usuario($id_usuario);
+      $linha = $result[0];
+    ?>
   <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 ">
     <div class ="row align-items-center flex-nowrap">
       <div class ="row flex-shrink-1 align-items-center">
         <div class="fundo-elk-logo">
-          <a href="../HTML/main-aluno.html" class=" text-decoration-none">
+          <a href="main-aluno.html" class=" text-decoration-none">
           <img class=" img-fluid"src="../IMAGENS/EstágioLink.png">
           </a>
         </div>
@@ -37,16 +41,21 @@
   </header>
   <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
     <div>
-        <a href="edicoes/aluno.html">Meu Cúrriculo</a>
+        <a href="editar-visualizar.php">Meu Cúrriculo</a>
     </div>
     <div>
-        <a href=""><?php echo $linha ['tipo']==0? "Estágios": "Estagiários"?></a>
+        <a href="">Pesquisar</a>
     </div>
-    <div>
+    <?php 
+    if($linha["tipo"]==0){
+      echo '<div id = "relato">
         <a href="relato-anonimo/relato.html">Relato</a>
-    </div>
+    </div>';
+    }
+    ?>
+    
     <div>
-        <a href="../relato-anonimo/relato.html">Sair</a>
+      <a href="../PHP-CONFIG/logout.php">Sair</a>
     </div>
   </nav>
   <div class="main-content mb-3 ml-5">
@@ -63,21 +72,16 @@
         </div>
       </nav>
   </div>
+  <h3 class="mb-4" style="margin-left: 5em"><?php echo $linha["tipo"]==0? "Estágios": "Estagiários"; ?></h3>
+    <div class="container-fluid w-50">
+    <div class = "d-flex justify-content-between mb-5 align-items-center">
+    <input class = "inputformat"  style="width: 25em !important; "type="text" placeholder = "Pesquisar">
+    <button class = "btn">Pesquisar</button>
+    </div>
+    <div class = "row flex-nowrap d-flex justify-content-center">
  
           
   <?php
-    include '../PHP-CONFIG/UserLoginSession.php';
-    verificarSessao();
-    $id_usuario = $_COOKIE['id_usuario'];
-    $result = get_usuario($id_usuario);
-    $linha = $result[0];
-    echo '<h3 class="mb-4" style="margin-left: 5em">'. ($linha["tipo"]==0? "Estágios": "Estagiários").'</h3>';
-    echo '<div class="container-fluid w-50">';
-    echo ' <div class = "d-flex justify-content-between mb-5 align-items-center">';
-    echo '   <input class = "inputformat"  style="width: 25em !important; "type="text" placeholder = "Pesquisar">';
-    echo '   <button class = "btn">Pesquisar</button>';
-    echo ' </div>';
-    echo ' <div class = "row flex-nowrap d-flex justify-content-center">';
    
     $usuarios = $linha['tipo'];
     if($usuarios==0){
@@ -88,7 +92,7 @@
     $results = get_usuarios($usuarios);
     echo '<div class = "d-flex flex-wrap">';
 
-    if($result){
+    if($results){
       foreach ($results as $linha){
       echo "<div class = 'col-4 align-self-start justify-content-center p-5'>";
         echo "<div class=' p-2 card overflow-hidden position-relative d-flex justify-content-center align-items-center' style = ' width: 12em;'>";
@@ -97,7 +101,7 @@
         echo "<div class='d-flex align-items-center justify-content-between' style = ' width: 12em;'>
               <span class='card-title'>".$linha['nome']."</span>
               <div class = 'justify-content-between'>
-                <a class = 'text-dark' href='visualizar/aluno.html'><ion-icon name='eye-outline'></ion-icon></a>
+                <a class = 'text-dark' href='visualizar.php?id_usuario=".$linha['id_usuario']."'><ion-icon name='eye-outline'></ion-icon></a>
                 <ion-icon name='call-outline'></ion-icon>
                 <ion-icon name='star-outline'></ion-icon>
                </div>
@@ -127,6 +131,8 @@
             </div>
         </div>
     </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <script src = "../JS/script.js"></script>
-    </body>
+  </body>
 </html>

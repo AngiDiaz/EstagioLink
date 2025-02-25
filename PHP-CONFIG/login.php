@@ -10,7 +10,23 @@
 
     if($user->logar($nome, $email, $senha) == true){
       if(isset($_SESSION['logado'])){
-        header('Location:../HTML/listar-usuarios.php?');
+        $id = $_COOKIE['id_usuario'];
+        $result = get_usuario($id);
+        $linha = $result[0];
+        if($linha['tipo']==0){
+          if($linha['curriculo']){
+            header('Location:../HTML/listar-usuarios.php?');
+          }else{
+            header('Location:../HTML/paginas-formulario/aluno/dados-pessoais.html');
+          }
+        }else if($linha['tipo']==1){
+          if($linha['dados']){
+            header('Location:../HTML/listar-usuarios.php?');
+          }else{
+            header('Location:../HTML/paginas-formulario/empresa/informacoes-empresa.php');
+          }
+        }
+        
         
       }else{
         header('Location:../HTML/login.html');

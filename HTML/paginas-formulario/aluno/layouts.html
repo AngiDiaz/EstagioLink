@@ -31,7 +31,7 @@
       </header>
       <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
         <div>
-            <a href="#">Meu Cúrriculo</a>
+            <a href="#">Meu Currículo</a>
         </div>
         <div>
             <a href="../../paginas-pesquisa/aluno.html">Estágios</a>
@@ -82,16 +82,45 @@
             </ul>
         </div>
             <h3>Escolha um modelo de layout</h3>
-        <form action="../../paginas-pesquisa/aluno.html">
-          <p>
-            <img class="img-fluid w-25" src="../../../IMAGENS/layout 1.png">
-          </p>
-          <p>
-            <input type="radio" name ="modelo1" value ="modelo" checked>Modelo 1
-          </p>
-          <button type="submit" class="btn ">Próximo</button>
+            <form id="layout-form">
+              <p>
+                  <img class="img-fluid w-25" src="../../../IMAGENS/layout 1.png">
+              </p>
+              <p>
+                  <input type="radio" name="modelo" value="modelo1" checked> Modelo 1
+              </p>
+              <button type="button" class="btn" id="botaoProximo">Próximo</button>        
+          </form>
           
-        </form>
+          <script>
+              document.getElementById("botaoProximo").addEventListener("click", function() {
+                  // Obtém os dados do formulário
+                  const form = document.getElementById("layout-form");
+                  const inputs = form.querySelectorAll("input, textarea, select");
+          
+                  let dados = {};
+                  inputs.forEach(input => {
+                      if (input.type === "radio") {
+                          if (input.checked) {
+                              dados[input.name] = input.value;
+                          }
+                      } else {
+                          dados[input.name] = input.value;
+                      }
+                  });
+          
+                  // Salva os dados no localStorage
+                  localStorage.setItem("layout-form", JSON.stringify(dados));
+          
+                  // Verifica se os dados foram salvos corretamente antes de redirecionar
+                  if (localStorage.getItem("layout-form")) {
+                      window.location.href = "curriculopdf.html"; // Redireciona para a página final
+                  } else {
+                      alert("Erro ao salvar os dados. Tente novamente.");
+                  }
+              });
+          </script>          
+          
     </div>
 
     <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
@@ -102,7 +131,7 @@
                 </div>
             </div>
             <div class="col text-white text-center">
-                <span>Copyright © 2024 EstágioLink, All rights reserved</span>
+                <span>Copyright © 2024 EstágioLink. Todos os direitos reservados</span>
             </div>
         </div>
     </footer>

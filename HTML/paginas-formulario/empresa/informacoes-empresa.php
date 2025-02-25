@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dados Pessoais</title>
+    <title>Informações da empresa</title>
     <link rel="icon" href="../../../IMAGENS/ELKLogo.png" type="image/x-icon"/>
     <link rel = "stylesheet" type="text/css" href="../../../CSS/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
+
 <body>
+<?php
+  include '../../../PHP-CONFIG/UserLoginSession.php';
+  verificarSessao();
+  $id = $_COOKIE['id_usuario'];
+  $result = get_usuario($id);
+  $empresa = $result[0];
+  ?>
     <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 ">
         <div class ="row align-items-center flex-nowrap">
           <div class ="row flex-shrink-1 align-items-center">
@@ -20,27 +29,21 @@
             
           </div>
           <div class = "col flex-grow d-flex ml-4 justify-content-end">
-            <span style = "color:white">Olá [username]</span>
+            <span id = "nomeUsuario" style = "color:white">Olá [username]</span>
           </div>
     
           <div class=" col-lg-1 col-2 d-flex justify-content-end flex-shrink-12">
-            <img class="img-fluid" src = "../../../IMAGENS/foto-perfil.png">
+            <img id = "fotoUsuario" class="img-fluid" src = "../../../IMAGENS/foto-perfil.png">
           </div>
         </div>
         
       </header>
       <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
         <div>
-            <a href="#">Meu Currículo</a>
+            <a href="#">Minha Empresa</a>
         </div>
         <div>
-            <a href="../../paginas-pesquisa/aluno.html">Estágios</a>
-        </div>
-        <div>
-            <a href="../../favoritos/aluno.html">Favoritos</a>
-        </div>
-        <div>
-            <a href="../../relato-anonimo/relato.html">Relato</a>
+            <a href="../../paginas-pesquisa/aluno.html">Estagiários</a>
         </div>
      </nav>
     <div class="main-content mb-3 ml-5">
@@ -54,84 +57,65 @@
                   <a class="nav-link" href="../../main-aluno.html">Home <span class="sr-only">(Página atual)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Meu Curriculo</a>
+                  <a class="nav-link" href="">Minha empresa</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Informações do estagiário</a>
+                  <a class="nav-link" href="">Informações da empresa</a>
                 </li>
               </ul>
             </div>
           </nav>
     </div>
-    <h3 class="mb-4" style="margin-left: 5em">Informações do Estagiário</h3>
+    <h3 class="mb-4" style="margin-left: 5em">Informações da Empresa</h3>
     <div class="container-fluid w-50">
-        <div class="border-bottom mb-3">
-            <ul class="i">
-                <li>
-                    Dados pessoais
-                </li>
-                <li class="text-success">
-                    Dados Curriculares
-                </li>
-                <li>
-                    Experiências
-                </li>
-                <li>
-                    Layout
-                </li>
-            </ul>
-        </div>
-        <h3>Dados curriculares</h1>
-          <form id="dados-curriculares">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Curso</label>
-                    <input type="text" class="form-control" name="curso" placeholder="Ex: Informática, Alimentos, Edificações">
-                </div>
-                <div class="form-group col-md-6">
-                    <label>Modalidade</label>
-                    <select class="form-control" name="modalidade">
-                        <option value="Integrado">Integrado</option>
-                        <option value="Subsequente">Subsequente</option>
-                    </select>
-                </div>
+        
+        <form  action=<?php echo $empresa['dados']? "../../../PHP-CONFIG/atualizar-empresa.php": "../../../PHP-CONFIG/empresa.php"?> method="POST">
+            <input type="hidden" value ="<?php echo $id;?>" name="id_usuario">
+            <div class="border-bottom mb-3">
+            </div>
+            <h3>Informações da empresa</h3>
+            <div class="form-group">
+                <label>Descrição da empresa</label>
+                <input type="text" class="form-control" name="descricao-emp"  placeholder="Fale um pouco sobre sua empresa">
             </div>
             <div class="form-group">
-                <label>Turno</label>
-                <select class="form-control" name="turno">
-                    <option value="Matutino">Matutino</option>
-                    <option value="Vespertino">Vespertino</option>
-                    <option value="Noturno">Noturno</option>
-                </select>
+                <label>CEP</label>
+                <input type="number" class="form-control" name="cep-emp" class="form-control" placeholder="Ex: xxxxx-xxx">
             </div>
             <div class="form-group">
-                <label for="birth-date">Data de início do curso</label>
-                <input type="date" class="form-control" name="datainicio" required>
+                <label>Telefone para contato</label>
+                <input type="tel" class="form-control" name="tel" class="form-control" placeholder="Ex: (xx) x xxxx-xxxx">
             </div>
             <div class="form-group">
-                <label for="birth-date">Data de conclusão do curso</label>
-                <input type="date" class="form-control" name="dataconclusao" required>
+                <label>Email para contato</label>
+                <input type="email" class="form-control" name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com">
             </div>
+            <div class="border-bottom mb-3">
+            </div>
+            <h3>Informações da vaga</h3>
+            <div class="form-group">
+                <label>Curso do estagiário</label>
+                <input type="text" class="form-control" name="curso"  placeholder="Ex: Informática, Alimentos, Edificações">
+            </div>
+           
+            <div class="form-group">
+                <label>Requisitos</label>
+                <input type="text" class="form-control" name="requisitos"  placeholder="Conhecimento requerido para o estágio">
+            </div>
+            <div class="form-group">
+                <label>Responsabilidades</label>
+                <input type="text" class="form-control" name="responsabilidades" class="form-control" placeholder="Atividades do estágio">
+            </div>
+            <div class="form-group">
+                <label>Oferta</label>
+                <input type="text" class="form-control" name="oferta"  placeholder="Bolsas, Auxilios e qualidades da empresa (ex: sala de descanso)">
+            </div>
+
+              
             
-            <button type="button" class="btn" onclick="salvarDados('dados-curriculares'); window.location.href='experiencias.html';">Próximo</button>
-        </form>
-        
-        <script>
-        function salvarDados(formId) {
-            const form = document.getElementById(formId);
-            if (!form) return; // Se o formulário não existir, sai da função
-        
-            const inputs = form.querySelectorAll('input, textarea, select');
             
-            let dados = {};
-            inputs.forEach(input => {
-                dados[input.name] = input.value;
-            });
-        
-            localStorage.setItem(formId, JSON.stringify(dados));
-        }
-        </script>
-        
+            <button type="submit" class="btn ">Próximo</button>
+          </form>
     </div>
 
     <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
@@ -142,7 +126,7 @@
                 </div>
             </div>
             <div class="col text-white text-center">
-                <span>Copyright © 2024 EstágioLink. Todos os direitos reservados</span>
+                <span>Copyright © 2024 EstágioLink, All rights reserved</span>
             </div>
         </div>
     </footer>

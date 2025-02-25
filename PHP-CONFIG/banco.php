@@ -27,6 +27,7 @@ function cadastrar_usuario($tipo, $nome, $email, $senha, $foto, $valor)
       $instrucao->bindParam(":FOTO", $foto);
       $instrucao->bindParam(":TIPO", $tipo);
       $instrucao->execute();
+      
     }
     header('Location:../HTML/login.html');
 
@@ -93,14 +94,74 @@ function  excluir_usuario($id_usuario){
     }
 }
 
-function getSenha($id_usuario){
+function cadastrarDadosEmpresa($id, $descricao, $telefone, $email, $curso, $requisito, $resp, $oferta){
   $conn = conectar();
-  $sql = "SELECT senha FROM usuario WHERE id_usuario = :ID_USUARIO";
+  $sql = "INSERT INTO dadosempresa(id_empresa, descricao, telefone, email, curso, requisitos, responsabilidades, ofertas) VALUES(:ID, :DESCRICAO, :TEL, :EMAIL, :CURSO, :REQ, :RESP, :OFERTA)";
   $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam("ID_USUARIO", $id_usuario);
-  $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
-  return $result;
-
+  $instrucao->bindParam(":ID", $id);
+  $instrucao->bindParam(":DESCRICAO", $descricao);
+  $instrucao->bindParam(":TEL", $telefone);
+  $instrucao->bindParam(":EMAIL", $email);
+  $instrucao->bindParam(":CURSO", $curso);
+  $instrucao->bindParam(":REQ", $requisito);
+  $instrucao->bindParam(":RESP", $resp);
+  $instrucao->bindParam(":OFERTA", $oferta);
+  $instrucao->execute();
+  $result = get_dados($id);
+  $linha = $result[0];
+  $id_dados = $linha['id_dados'];
+  associarDados($id, $id_dados);
 }
 
+function associarDados($id, $id_dados){
+  $conn = conectar();
+  $sql = 'UPDATE usuario SET dados = :ID_DADOS
+      WHERE id_usuario=:ID_USUARIO';
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam(":ID_USUARIO", $id);
+  $instrucao->bindParam(":ID_DADOS", $id_dados);
+  $instrucao->execute();
+
+  
+}
+
+function atualizarDadosEmpresa($id, $descricao, $telefone, $email, $curso, $requisito, $resp, $oferta){
+  $conn = conectar();
+  $sql = "UPDATE dadosempresa SET id_empresa = :ID, descricao = :DESCRICAO, telefone = :TEL, email = :EMAIL, curso = :CURSO, requisitos = :REQ, responsabilidades = :RESP, ofertas = :OFERTA)
+  WHERE id_empresa=:ID";
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam(":ID", $id);
+  $instrucao->bindParam(":DESCRICAO", $descricao);
+  $instrucao->bindParam(":TEL", $telefone);
+  $instrucao->bindParam(":EMAIL", $email);
+  $instrucao->bindParam(":CURSO", $curso);
+  $instrucao->bindParam(":REQ", $requisito);
+  $instrucao->bindParam(":RESP", $resp);
+  $instrucao->bindParam(":OFERTA", $oferta);
+  $instrucao->execute();
+  header('Location:../HTML/listar-usuarios.php');
+}
+
+
+function get_dados($id){
+  $conn = conectar();
+  $sql = "SELECT * FROM dadosempresa WHERE id_empresa = :ID";
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam(":ID", $id);
+  
+  $instrucao->execute();
+  $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
+  return $result;
+}
+
+function addCurriculo($pdf, $id){
+  $conn = conectar();
+  $sql = 'UPDATE usuario SET curriculo = :CURRICULO WHERE id_usuario=:ID_USUARIO';
+  $instrucao = $conn->prepare($sql);
+
+  $instrucao->bindParam(":CURRICULO",$pdf);
+  $instrucao->bindParam(":ID_USUARIO", $id);
+
+  $instrucao->execute();
+}
 ?>

@@ -31,7 +31,7 @@
       </header>
       <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
         <div>
-            <a href="#">Meu Cúrriculo</a>
+            <a href="#">Meu Currículo</a>
         </div>
         <div>
             <a href="../../paginas-pesquisa/aluno.html">Estágios</a>
@@ -82,46 +82,69 @@
             </ul>
         </div>
         <h3>Dados pessoais</h1>
-        <form action="dados-curriculares.html">
-            <div class="form-row">
+        <form id="dados-pessoais">
+          <div class="form-row">
               <div class="form-group col-md-6">
-                <label>Nome</label>
-                <input type="text" class="form-control" name="nomealuno" placeholder="Nome Completo">
+                  <label>Nome</label>
+                  <input type="text" class="form-control" name="nomealuno" placeholder="Nome Completo">
               </div>
               <div class="form-group col-md-6">
-                <label for="birth-date">Data de Nascimento</label>
-                <input type="date" name="datanascimento" class="form-control" placeholder="Senha" max= "2008-01-01" required>
+                  <label for="birth-date">Data de Nascimento</label>
+                  <input type="date" name="datanascimento" class="form-control" placeholder="Senha" max="2008-01-01" required>
               </div>
-            </div>
-            <div class="form-group">
-                <label for="inputAddress">CPF</label>
-                <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00">
-              </div>
-            <div class="form-group">
+          </div>
+          <div class="form-group">
+              <label for="inputAddress">CPF</label>
+              <input type="text" name="cpf" class="form-control" placeholder="000.000.000-00">
+          </div>
+          <div class="form-group">
               <label for="inputAddress">Endereço</label>
               <input type="text" name="enderecoaluno" class="form-control" id="inputAddress" placeholder="Rua dos Bobos, nº 0">
-            </div>
-            <div class="form-row">
+          </div>
+          <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputCity">Cidade</label>
-                <input type="text"name="cidadealuno" class="form-control" id="inputCity">
+                  <label for="inputCity">Cidade</label>
+                  <input type="text" name="cidadealuno" class="form-control" id="inputCity">
               </div>
               <div class="form-group col-md-4">
-                <label for="inputEstado">Estado</label>
-                <select id="inputEstado" name="estadoaluno" class="form-control">
-                  <option selected>Escolher...</option>
-                  <option>...</option>
-                </select>
+                  <label for="inputEstado">Estado</label>
+                  <select id="inputEstado" name="estadoaluno" class="form-control">
+                      <option selected>Escolher...</option>
+                      <option>BA</option>
+                      <option>SP</option>
+                      <option>MG</option>
+                      <option>SC</option>
+                      <option>RJ</option>
+                      <option>RS</option>
+                      <option>GO</option>
+                      <option>PI</option>
+                  </select>
               </div>
               <div class="form-group col-md-2">
-                <label for="inputCEP">CEP</label>
-                <input type="text" name="cepaluno" class="form-control" id="inputCEP">
+                  <label for="inputCEP">CEP</label>
+                  <input type="text" name="cepaluno" class="form-control" id="inputCEP">
               </div>
-            </div>
-            <button type="submit" class="btn ">Próximo</button>
-          </form>
+          </div>
+          <button type="button" class="btn" onclick="salvarDados('dados-pessoais'); window.location.href='dados-curriculares.html';">Próximo</button>
+      </form>
+      
+      <script>
+      function salvarDados(formId) {
+          const form = document.getElementById(formId);
+          if (!form) return; 
+      
+          const inputs = form.querySelectorAll('input, textarea, select');
+          
+          let dados = {};
+          inputs.forEach(input => {
+              dados[input.name] = input.value;
+          });
+      
+          localStorage.setItem(formId, JSON.stringify(dados));
+      }
+      </script>
+      
     </div>
-
     <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
         <div class="row align-items-center">
             <div class ="col-2 flex-shrink-1 d-flex">
@@ -130,7 +153,7 @@
                 </div>
             </div>
             <div class="col text-white text-center">
-                <span>Copyright © 2024 EstágioLink, All rights reserved</span>
+                <span>Copyright © 2024 EstágioLink. Todos os direitos reservados</span>
             </div>
         </div>
     </footer>

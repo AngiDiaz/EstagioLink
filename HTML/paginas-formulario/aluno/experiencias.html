@@ -31,7 +31,7 @@
       </header>
       <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
         <div>
-            <a href="#">Meu Cúrriculo</a>
+            <a href="#">Meu Currículo</a>
         </div>
         <div>
             <a href="../../paginas-pesquisa/aluno.html">Estágios</a>
@@ -81,28 +81,47 @@
                 </li>
             </ul>
         </div>
-        <h3>Experiências</h1>
-        <form action="documentos-adicionais.html">
+        <h3>Experiências</h3>
+        <form id="experiencia">
             <div class="form-group">
                 <label>Experiências profissionais</label>
                 <input type="text" class="form-control" name="expprof">
-              </div>
-              <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label>Conhecimentos</label>
                 <input type="text" class="form-control" name="conhecimentos">
-              </div>
-              <div class="form-group">
+            </div>
+            <div class="form-group">
                 <label>Idiomas</label>
-                <input type="text" class="form-control" name ="idiomas">
-              </div>
-              <div class="form-group">
+                <input type="text" class="form-control" name="idiomas">
+            </div>
+            <div class="form-group">
                 <label>Habilidades</label>
-                <input type="text" class="form-control" name ="habilidades">
-              </div>
-            
-            <button type="submit" class="btn ">Próximo</button>
-          </form>
+                <input type="text" class="form-control" name="habilidades">
+            </div>
+        
+            <button type="button" class="btn" onclick="salvarDados('experiencia'); window.location.href='documentos-adicionais.html';">Próximo</button>
+        </form>
     </div>
+<div>
+  
+  <script>
+    function salvarDados(formId) {
+        const form = document.getElementById(formId);
+        if (!form) return;
+
+        const inputs = form.querySelectorAll('input, textarea, select');
+        let dados = {};
+        
+        inputs.forEach(input => {
+            dados[input.name] = input.value;
+        });
+
+        localStorage.setItem(formId, JSON.stringify(dados));
+    }
+</script>
+        
+</div>
 
     <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">
         <div class="row align-items-center">
@@ -112,7 +131,7 @@
                 </div>
             </div>
             <div class="col text-white text-center">
-                <span>Copyright © 2024 EstágioLink, All rights reserved</span>
+                <span>Copyright © 2024 EstágioLink. Todos os direitos reservados</span>
             </div>
         </div>
     </footer>

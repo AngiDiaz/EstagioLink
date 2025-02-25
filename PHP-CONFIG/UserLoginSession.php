@@ -4,7 +4,6 @@ include 'banco.php';
 class UserLogin{
 
   function logar($nome, $email, $senha){
-/*include 'config.php';*/
     $conn = conectar();
 
     $sql = "SELECT * FROM usuario WHERE nome = :NOME AND email = :EMAIL AND senha = :SENHA";

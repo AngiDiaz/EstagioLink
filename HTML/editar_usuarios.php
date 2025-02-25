@@ -32,8 +32,14 @@
         </div>
         
       </header>
-      <div class = "mb-4 p-1 bg-danger navheader d-flex justify-content-center" style = "height: 3em"></div>
-
+      <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
+        <div>
+            <a href="listar-usuarios.php">Voltar</a>
+        </div>
+        <div>
+            <a href="../PHP-CONFIG/logout.php">Sair</a>
+        </div>
+     </nav>
       <h3 class="mb-4" style="margin-left: 5em">Alterar informações do usuário</h3>
     <?php
     
@@ -75,11 +81,11 @@
 
             <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/jpg" onchange="previewFoto(event)">
             <br><br>
-            <button class = "btn bg-warning" type="submit">Salvar</button>
+            <div class ="d-flex justify-content-center"><button class = "btn" type="submit">Salvar</button></div>
         </form>
         <br>
 
-        <button onclick="window.location.href='listar-usuarios.php'" class = "btn" type="submit">Voltar</button>
+        <button onclick="window.location.href='../PHP-CONFIG/excluir_usuario.php'" class = "btn bg-danger" type="submit">Excluir Conta</button>
     </div>
 
     <footer class="container-fluid p-3 fixed-bottom position-relative mt-5">

@@ -24,11 +24,11 @@
           </div>
           <div class = "col flex-grow d-flex ml-4 justify-content-end">
             <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='../editar_usuarios.php'">Editar usuário</button>
-            <span style = "color:white">Olá [username]</span>
+            <span id="nomeUsuario" style = "color:white">Olá [username]</span>
           </div>
     
           <div class=" col-lg-1 col-2 d-flex justify-content-end flex-shrink-12">
-            <img class="img-fluid" src = "../../IMAGENS/foto-perfil.png">
+            <img id="fotoUsuario" class="img-fluid" src = "../../IMAGENS/foto-perfil.png">
           </div>
         </div>
         
@@ -39,10 +39,13 @@
             <a href="../edicoes/aluno.html">Meu Cúrriculo</a>
         </div>
         <div>
-            <a href="../paginas-pesquisa/aluno.html">Estágios</a>
+            <a href="../listar-usuarios.php">Pesquisar</a>
         </div>
         <div>
             <a href="../relato-anonimo/relato.html">Relato</a>
+        </div>
+        <div>
+          <a href="../../PHP-CONFIG/logout.php">Sair</a>
         </div>
      </nav>
     <div class="main-content mb-3 ml-5">

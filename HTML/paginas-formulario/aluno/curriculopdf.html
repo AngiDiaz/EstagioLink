@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estágio Link - Currículo Gerado</title>
+    <link rel="icon" href="../../../IMAGENS/ELKLogo.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            width: 210mm;
+            min-height: 297mm;
+            max-height: 297mm;
+            background: white;
+            padding: 25mm;
+            margin: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+        .header {
+            background-color: #36b60c;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .section {
+            margin-top: 20px;
+            padding: 10px;
+        }
+        h3 {
+            color: #000000;
+            font-weight: bold;
+            border-bottom: 3px solid #36b60c;
+            padding-bottom: 8px;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        p {
+            font-size: 16px;
+            color: #000000;
+            margin-bottom: 5px;
+        }
+        strong {
+            color: #222;
+        }
+        .btn-primary {
+            background: #28a745;
+            border: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="curriculo">
+        <div class="header">
+            Currículo Profissional
+        </div>
+        <div class="section">
+            <h3>Dados Pessoais</h3>
+            <p><strong>Nome:</strong> <span id="nomealuno"></span></p>
+            <p><strong>Data de Nascimento:</strong> <span id="datanascimento"></span></p>
+            <p><strong>CPF:</strong> <span id="cpf"></span></p>
+            <p><strong>Endereço:</strong> <span id="enderecoaluno"></span></p>
+            <p><strong>Cidade:</strong> <span id="cidadealuno"></span></p>
+            <p><strong>Estado:</strong> <span id="estadoaluno"></span></p>
+            <p><strong>CEP:</strong> <span id="cepaluno"></span></p>
+        </div>
+        <div class="section">
+            <h3>Formação Acadêmica</h3>
+            <p><strong>Curso:</strong> <span id="curso"></span></p>
+            <p><strong>Modalidade:</strong> <span id="modalidade"></span></p>
+            <p><strong>Data de Início:</strong> <span id="datainicio"></span></p>
+            <p><strong>Data de Conclusão:</strong> <span id="dataconclusao"></span></p>
+        </div>
+        <div class="section">
+            <h3>Experiência</h3>
+            <p><strong>Experiência Profissional:</strong> <span id="expprof"></span></p>
+            <p><strong>Conhecimentos:</strong> <span id="conhecimentos"></span></p>
+            <p><strong>Idiomas:</strong> <span id="idiomas"></span></p>
+            <p><strong>Habilidades:</strong> <span id="habilidades"></span></p>
+        </div>
+    </div>
+    
+    <button onclick="gerarPDF()" class="btn btn-primary">Gerar PDF</button>
+    
+    <script>
+        function gerarPDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF("p", "mm", "a4");
+        doc.html(document.getElementById("curriculo"), {
+            callback: function (doc) {
+                doc.save("Curriculo_Estagiario.pdf");
+                const pdfBase64 = doc.output('datauristring').split(',')[1];
+                enviarPDFparaPHP(pdfBase64);
+            },
+            x: 3,
+            y: 0,
+            width: 190,
+            windowWidth: document.getElementById("curriculo").scrollWidth
+        });
+        function enviarPDFparaPHP(pdfBase64) {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "http://localhost/EstagioLink/PHP-CONFIG/salvarpdf.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText); // Resposta do servidor
+                    window.location.href = "../../listar-usuarios.php";
+                }
+            };
+
+            const dados = "pdf=" + encodeURIComponent(pdfBase64);
+            xhr.send(dados);
+        }
+    }
+        function carregarCurriculo() {
+            const secoes = ['dados-pessoais', 'dados-curriculares', 'experiencia', 'documentos-adicionais', 'layout-form'];
+
+            secoes.forEach(secao => {
+                const dados = JSON.parse(localStorage.getItem(secao));
+
+                if (dados) {
+                    Object.keys(dados).forEach(chave => {
+                        const campo = document.getElementById(chave);
+                        if (campo) {
+                            campo.innerText = dados[chave] ? dados[chave] : "Não informado";
+                        }
+                    });
+                }
+            });
+        }
+
+        window.onload = carregarCurriculo;
+    </script>    
+</body>
+</html>
