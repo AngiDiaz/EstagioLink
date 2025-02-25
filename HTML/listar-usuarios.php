@@ -39,7 +39,7 @@
     </div>
           
   </header>
-  <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
+  <nav class = "mb-4 p-1 bg-danger navheader d-flex justify-content-center">
     <div>
         <a href="editar-visualizar.php">Meu Cúrriculo</a>
     </div>
@@ -66,7 +66,10 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="../main-aluno.html">Home <span class="sr-only">(Página atual)</span></a>
+              <a class="nav-link" href="../main-aluno.html">Home </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">Pesquisar <span class="sr-only">(Página atual)</span></a>
             </li>
           </ul>
         </div>
@@ -90,18 +93,19 @@
       $usuarios = 0;
     }
     $results = get_usuarios($usuarios);
+    $linhas = $results[0];
     echo '<div class = "d-flex flex-wrap">';
 
     if($results){
-      foreach ($results as $linha){
+      foreach ($results as $linhas){
       echo "<div class = 'col-4 align-self-start justify-content-center p-5'>";
         echo "<div class=' p-2 card overflow-hidden position-relative d-flex justify-content-center align-items-center' style = ' width: 12em;'>";
-          echo "<img src= ../IMAGENS/".($linha['foto'] == null ? 'foto-perfil.png' : $linha['foto']). " width=150em height=150em style = 'object-fit: cover'>";
+          echo "<img src= ../IMAGENS/".($linhas['foto'] == null ? 'foto-perfil.png' : $linhas['foto']). " width=150em height=150em style = 'object-fit: cover'>";
         echo "</div>";
         echo "<div class='d-flex align-items-center justify-content-between' style = ' width: 12em;'>
-              <span class='card-title'>".$linha['nome']."</span>
+              <span class='card-title'>".$linhas['nome']."</span>
               <div class = 'justify-content-between'>
-                <a class = 'text-dark' href='visualizar.php?id_usuario=".$linha['id_usuario']."'><ion-icon name='eye-outline'></ion-icon></a>
+                <a class = 'text-dark' href='visualizar.php?id_usuario=".$linhas['id_usuario']."'><ion-icon name='eye-outline'></ion-icon></a>
                 <ion-icon name='call-outline'></ion-icon>
                 <ion-icon name='star-outline'></ion-icon>
                </div>
@@ -110,7 +114,7 @@
       }
     }else{
       echo ' <div class="alert alert-danger" role="alert">'.
-        ($linha['tipo']==1? "Nenhum aluno cadastrado.": "Nenhuma empresa cadastrada.")
+        ($linhas['tipo']==1? "Nenhum aluno cadastrado.": "Nenhuma empresa cadastrada.")
         .'</div>';
     }
     

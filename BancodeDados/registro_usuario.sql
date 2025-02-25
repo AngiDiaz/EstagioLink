@@ -20,6 +20,5 @@ CREATE TABLE dadosempresa(
     curso  VARCHAR(255),
     requisitos  TEXT, 
     responsabilidades  TEXT, 
-    ofertas  TEXT,
-    id_empresa INT NOT NULL UNIQUE
+    ofertas  TEXT
 );

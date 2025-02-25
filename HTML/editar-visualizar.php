@@ -101,14 +101,14 @@
                 </div>
                 <div class="col-8 justify-content-center px-5" style="border-left: solid 0.1em rgba(61, 155, 58, 1);">
                     <div class="alert alert-success" role="alert">
-                        <b>' . htmlspecialchars($login['nome']) . '</b> está em busca de um estagiário do curso técnico em <b>' . htmlspecialchars($dados['curso']) . '</b> para integrar a equipe e colaborar em diversos projetos!
+                        <b>' . htmlspecialchars($login['nome']) . '</b> está em busca de um estagiário do curso técnico em <b>' . htmlspecialchars($dados['curso_vaga']) . '</b> para integrar a equipe e colaborar em diversos projetos!
                     </div>
                     <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Requisitos</p>
                     <span class="alinhar">' . htmlspecialchars($dados['requisitos']) . '</span>
                     <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Responsabilidades</p>
                     <span class="alinhar">' . htmlspecialchars($dados['responsabilidades']) . '</span>
                     <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Oferta</p>
-                    <span class="alinhar">' . htmlspecialchars($dados['ofertas']) . '</span>
+                    <span class="alinhar">' . htmlspecialchars($dados['beneficios']) . '</span>
                 </div>
                 
             </div>

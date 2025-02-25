@@ -17,6 +17,8 @@
   $id = $_COOKIE['id_usuario'];
   $result = get_usuario($id);
   $empresa = $result[0];
+  $results = get_dados($empresa['dados']);
+  $dados = $results[0];
   ?>
     <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 ">
         <div class ="row align-items-center flex-nowrap">
@@ -40,10 +42,7 @@
       </header>
       <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
         <div>
-            <a href="#">Minha Empresa</a>
-        </div>
-        <div>
-            <a href="../../paginas-pesquisa/aluno.html">Estagiários</a>
+            <a href="../../../PHP-CONFIG/logout.php">Sair</a>
         </div>
      </nav>
     <div class="main-content mb-3 ml-5">
@@ -54,13 +53,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="../../main-aluno.html">Home <span class="sr-only">(Página atual)</span></a>
+                  <a class="nav-link" href="../../main-aluno.html">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Minha empresa</a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="">Informações da empresa</a>
+                  <a class="nav-link" href="">Informações da empresa <span class="sr-only">(Página atual)</span></a>
                 </li>
               </ul>
             </div>
@@ -76,39 +75,39 @@
             <h3>Informações da empresa</h3>
             <div class="form-group">
                 <label>Descrição da empresa</label>
-                <input type="text" class="form-control" name="descricao-emp"  placeholder="Fale um pouco sobre sua empresa">
+                <input type="text" class="form-control" name="descricao-emp"  placeholder="Fale um pouco sobre sua empresa" value = <?php echo $empresa['dados']? $dados['descricao']:"";?>>
             </div>
             <div class="form-group">
                 <label>CEP</label>
-                <input type="number" class="form-control" name="cep-emp" class="form-control" placeholder="Ex: xxxxx-xxx">
+                <input type="number" class="form-control" name="cep-emp" class="form-control" placeholder="Ex: xxxxx-xxx" value = <?php echo $empresa['dados']? $dados['cep']:"";?>>
             </div>
             <div class="form-group">
                 <label>Telefone para contato</label>
-                <input type="tel" class="form-control" name="tel" class="form-control" placeholder="Ex: (xx) x xxxx-xxxx">
+                <input type="tel" class="form-control" name="tel" class="form-control" placeholder="Ex: (xx) x xxxx-xxxx" value = <?php echo $empresa['dados']? $dados['telefone']:"";?>>
             </div>
             <div class="form-group">
                 <label>Email para contato</label>
-                <input type="email" class="form-control" name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com">
+                <input type="email" class="form-control" name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com" value = <?php echo $empresa['dados']? $dados['email_contato']:"";?>>
             </div>
             <div class="border-bottom mb-3">
             </div>
             <h3>Informações da vaga</h3>
             <div class="form-group">
                 <label>Curso do estagiário</label>
-                <input type="text" class="form-control" name="curso"  placeholder="Ex: Informática, Alimentos, Edificações">
+                <input type="text" class="form-control" name="curso"  placeholder="Ex: Informática, Alimentos, Edificações" value = <?php echo $empresa['dados']? $dados['curso_vaga']:"";?>>
             </div>
            
             <div class="form-group">
                 <label>Requisitos</label>
-                <input type="text" class="form-control" name="requisitos"  placeholder="Conhecimento requerido para o estágio">
+                <input type="text" class="form-control" name="requisitos"  placeholder="Conhecimento requerido para o estágio" value = <?php echo $empresa['dados']? $dados['requisitos']:"";?>>
             </div>
             <div class="form-group">
                 <label>Responsabilidades</label>
-                <input type="text" class="form-control" name="responsabilidades" class="form-control" placeholder="Atividades do estágio">
+                <input type="text" class="form-control" name="responsabilidades" class="form-control" placeholder="Atividades do estágio" value = <?php echo $empresa['dados']? $dados['responsabilidades']:"";?>>
             </div>
             <div class="form-group">
                 <label>Oferta</label>
-                <input type="text" class="form-control" name="oferta"  placeholder="Bolsas, Auxilios e qualidades da empresa (ex: sala de descanso)">
+                <input type="text" class="form-control" name="oferta"  placeholder="Bolsas, Auxilios e benefícios da empresa (ex: sala de descanso)" value = <?php echo $empresa['dados']? $dados['beneficios']:"";?>>
             </div>
 
               

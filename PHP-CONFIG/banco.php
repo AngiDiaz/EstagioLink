@@ -94,63 +94,71 @@ function  excluir_usuario($id_usuario){
     }
 }
 
-function cadastrarDadosEmpresa($id, $descricao, $telefone, $email, $curso, $requisito, $resp, $oferta){
+function cadastrarDadosEmpresa($id_usuario, $descricao, $telefone, $email_contato, $curso_vaga, $requisitos, $responsabilidades, $beneficios) {
   $conn = conectar();
-  $sql = "INSERT INTO dadosempresa(id_empresa, descricao, telefone, email, curso, requisitos, responsabilidades, ofertas) VALUES(:ID, :DESCRICAO, :TEL, :EMAIL, :CURSO, :REQ, :RESP, :OFERTA)";
+
+  $sql = "INSERT INTO dadosempresa (descricao, telefone, email_contato, curso_vaga, requisitos, responsabilidades, beneficios) 
+          VALUES (:DESCRICAO, :TELEFONE, :EMAIL_CONTATO, :CURSO_VAGA, :REQUISITOS, :RESPONSABILIDADES, :BENEFICIOS)";
   $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":ID", $id);
   $instrucao->bindParam(":DESCRICAO", $descricao);
-  $instrucao->bindParam(":TEL", $telefone);
-  $instrucao->bindParam(":EMAIL", $email);
-  $instrucao->bindParam(":CURSO", $curso);
-  $instrucao->bindParam(":REQ", $requisito);
-  $instrucao->bindParam(":RESP", $resp);
-  $instrucao->bindParam(":OFERTA", $oferta);
+  $instrucao->bindParam(":TELEFONE", $telefone);
+  $instrucao->bindParam(":EMAIL_CONTATO", $email_contato);
+  $instrucao->bindParam(":CURSO_VAGA", $curso_vaga);
+  $instrucao->bindParam(":REQUISITOS", $requisitos);
+  $instrucao->bindParam(":RESPONSABILIDADES", $responsabilidades);
+  $instrucao->bindParam(":BENEFICIOS", $beneficios);
   $instrucao->execute();
-  $result = get_dados($id);
-  $linha = $result[0];
-  $id_dados = $linha['id_dados'];
-  associarDados($id, $id_dados);
+
+  // Recuperar o ID gerado automaticamente
+  $id_dados = $conn->lastInsertId();
+
+  associarDados($id_usuario, $id_dados);
+}
+function associarDados($id_usuario, $id_dados) {
+  $conn = conectar();
+
+  $sql = "UPDATE usuario SET dados = :ID_DADOS WHERE id_usuario = :ID_USUARIO";
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam(":ID_DADOS", $id_dados);
+  $instrucao->bindParam(":ID_USUARIO", $id_usuario);
+  $instrucao->execute();
 }
 
-function associarDados($id, $id_dados){
+function atualizarDadosEmpresa($id_dados, $descricao, $telefone, $email_contato, $curso_vaga, $requisitos, $responsabilidades, $beneficios) {
   $conn = conectar();
-  $sql = 'UPDATE usuario SET dados = :ID_DADOS
-      WHERE id_usuario=:ID_USUARIO';
+
+  $sql = "UPDATE dadosempresa 
+          SET descricao = :DESCRICAO, 
+              telefone = :TELEFONE, 
+              email_contato = :EMAIL_CONTATO, 
+              curso_vaga = :CURSO_VAGA, 
+              requisitos = :REQUISITOS, 
+              responsabilidades = :RESPONSABILIDADES, 
+              beneficios = :BENEFICIOS 
+          WHERE id_dados = :ID_DADOS";
   $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":ID_USUARIO", $id);
+  $instrucao->bindParam(":ID_DADOS", $id_dados);
+  $instrucao->bindParam(":DESCRICAO", $descricao);
+  $instrucao->bindParam(":TELEFONE", $telefone);
+  $instrucao->bindParam(":EMAIL_CONTATO", $email_contato);
+  $instrucao->bindParam(":CURSO_VAGA", $curso_vaga);
+  $instrucao->bindParam(":REQUISITOS", $requisitos);
+  $instrucao->bindParam(":RESPONSABILIDADES", $responsabilidades);
+  $instrucao->bindParam(":BENEFICIOS", $beneficios);
+  $instrucao->execute();
+
+  header('Location: ../HTML/listar-usuarios.php');
+}
+
+function get_dados($id_dados) {
+  $conn = conectar();
+
+  $sql = "SELECT * FROM dadosempresa WHERE id_dados = :ID_DADOS";
+  $instrucao = $conn->prepare($sql);
   $instrucao->bindParam(":ID_DADOS", $id_dados);
   $instrucao->execute();
 
-  
-}
-
-function atualizarDadosEmpresa($id, $descricao, $telefone, $email, $curso, $requisito, $resp, $oferta){
-  $conn = conectar();
-  $sql = "UPDATE dadosempresa SET id_empresa = :ID, descricao = :DESCRICAO, telefone = :TEL, email = :EMAIL, curso = :CURSO, requisitos = :REQ, responsabilidades = :RESP, ofertas = :OFERTA)
-  WHERE id_empresa=:ID";
-  $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":ID", $id);
-  $instrucao->bindParam(":DESCRICAO", $descricao);
-  $instrucao->bindParam(":TEL", $telefone);
-  $instrucao->bindParam(":EMAIL", $email);
-  $instrucao->bindParam(":CURSO", $curso);
-  $instrucao->bindParam(":REQ", $requisito);
-  $instrucao->bindParam(":RESP", $resp);
-  $instrucao->bindParam(":OFERTA", $oferta);
-  $instrucao->execute();
-  header('Location:../HTML/listar-usuarios.php');
-}
-
-
-function get_dados($id){
-  $conn = conectar();
-  $sql = "SELECT * FROM dadosempresa WHERE id_empresa = :ID";
-  $instrucao = $conn->prepare($sql);
-  $instrucao->bindParam(":ID", $id);
-  
-  $instrucao->execute();
-  $result = $instrucao->fetchALL(PDO::FETCH_ASSOC);
+  $result = $instrucao->fetchAll(PDO::FETCH_ASSOC);
   return $result;
 }
 
@@ -163,5 +171,37 @@ function addCurriculo($pdf, $id){
   $instrucao->bindParam(":ID_USUARIO", $id);
 
   $instrucao->execute();
+}
+
+function comentar($id, $comentario, $nota, $empresa){
+  $conn = conectar();
+  $sql = "INSERT INTO comentarios(comentario, nota, id_usuario, empresa) VALUES (:COMENTARIO, :NOTA, :ID_USUARIO, :EMPRESA)";
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam(":COMENTARIO", $comentario);
+  $instrucao->bindParam(":NOTA",$nota);
+  $instrucao->bindParam(":ID_USUARIO", $id_usuario);
+  $instrucao->bindParam(":EMPRESA",$empresa);
+
+
+  $instrucao->execute();
+}
+function tempoDecorrido($timestamp) {
+  $agora = new DateTime(); // Data/hora atual
+  $comentario = new DateTime($timestamp); // Data/hora do comentário
+  $diferenca = $agora->diff($comentario); // Calcula a diferença
+
+  if ($diferenca->y > 0) {
+      return $diferenca->y == 1 ? '1 ano atrás' : $diferenca->y . ' anos atrás';
+  } elseif ($diferenca->m > 0) {
+      return $diferenca->m == 1 ? '1 mês atrás' : $diferenca->m . ' meses atrás';
+  } elseif ($diferenca->d > 0) {
+      return $diferenca->d == 1 ? '1 dia atrás' : $diferenca->d . ' dias atrás';
+  } elseif ($diferenca->h > 0) {
+      return $diferenca->h == 1 ? '1 hora atrás' : $diferenca->h . ' horas atrás';
+  } elseif ($diferenca->i > 0) {
+      return $diferenca->i == 1 ? '1 minuto atrás' : $diferenca->i . ' minutos atrás';
+  } else {
+      return $diferenca->s == 1 ? '1 segundo atrás' : $diferenca->s . ' segundos atrás';
+  }
 }
 ?>

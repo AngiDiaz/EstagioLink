@@ -14,7 +14,7 @@
     include '../PHP-CONFIG/UserLoginSession.php';
     verificarSessao();
 
-    $id = filter_input(INPUT_GET,'id_usuario',FILTER_SANITIZE_NUMBER_INT);;
+    $id = filter_input(INPUT_GET,'id_usuario',FILTER_SANITIZE_NUMBER_INT);
     $result_user = get_usuario($id);
     $usuario = $result_user[0];
 
@@ -75,7 +75,7 @@
                         <a class="nav-link" href="listar-usuarios.php">Pesquisar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><?php echo $usuario['tipo'] == 1? "Empresa" : "Currículo"; ?></a>
+                        <a class="nav-link"><?php echo $usuario['tipo'] == 1? "Empresa" : "Currículo"; ?><span class="sr-only">(Página atual)</span></a>
                     </li>
                 </ul>
             </div>
@@ -111,10 +111,11 @@
                     <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Responsabilidades</p>
                     <span class="alinhar">' . htmlspecialchars($dados['responsabilidades']) . '</span>
                     <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Oferta</p>
-                    <span class="alinhar">' . htmlspecialchars($dados['ofertas']) . '</span>
+                    <span class="alinhar">' . htmlspecialchars($dados['beneficios']) . '</span>
                 </div>
             </div>
         </div>';
+        echo '            <button type="button" class="btn mr-3" onclick="window.location.href=\'avaliacoes/aluno.php?id_usuario=\''.$id.'">Avaliar Empresa</button></div>  ';
         echo '<h3>Avaliações dos estagiários: 4  
         <ion-icon name="star-outline"></ion-icon>
         <ion-icon name="star-outline"></ion-icon>
