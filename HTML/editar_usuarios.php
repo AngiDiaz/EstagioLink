@@ -71,7 +71,7 @@
             <label for="nova_senha">Nova Senha:</label>
             <input class = "form-control" type="password" id="nova_senha" name="nova_senha">
             <br>
-            <img id="foto" src="../IMAGENS/<?php echo $linha['foto'];?>" alt="Foto de Perfil" width="100em">
+            <img id="foto" src="../IMAGENS/<?php echo $linha['foto']? $linha['foto']: "foto-perfil.png";?>" alt="Foto de Perfil" width="100em">
 
             <input type="file" id="foto" name="foto" accept="image/png, image/jpeg, image/jpg" onchange="previewFoto(event)">
             <br><br>

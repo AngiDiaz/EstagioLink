@@ -5,7 +5,12 @@
     $result = get_usuario($id_usuario);
     $linha = $result[0];
     if (isset($_COOKIE['id_usuario'])) {
-    echo 'http://localhost/EstagioLink/IMAGENS/'.$linha['foto'].'|'.$linha['nome'];
+    
+        if(!empty($linha['foto'])){
+            echo 'http://localhost/EstagioLink/IMAGENS/'.$linha['foto'].'|'.$linha['nome'];
+        }else{
+            echo 'http://localhost/EstagioLink/IMAGENS/foto-perfil.png'.'|'.$linha['nome'];
+        }
     } else {
         echo "http://localhost/EstagioLink/IMAGENS/foto-perfil.png|Usuário"; // Retorna uma imagem padrão se o cookie não existir
     }  

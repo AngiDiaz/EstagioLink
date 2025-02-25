@@ -48,7 +48,7 @@
 
         }else{
           echo "Nenhuma foto enviada.<br>";
-        if(isset($_FILES['foto']['error'])){
+        if(isset($_FILES['foto'])){
           echo 'Código de erro: '.$FILES['foto']['error'] . '<br>';
         }
         }

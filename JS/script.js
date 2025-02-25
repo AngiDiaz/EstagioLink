@@ -38,7 +38,7 @@ function atualizarFoto() {
                 if (fotoUsuario) {
                     fotoUsuario.src = caminhoFoto;
                 } else {
-                    console.error('Elemento com ID "fotoUsuario" não encontrado.');
+                    fotoUsuario.src = caminhoFoto;
                 }
 
                 // Atualiza o conteúdo do span com o nome do usuário

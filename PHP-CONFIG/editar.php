@@ -2,7 +2,7 @@
   $id_usuario = $_POST['codigo'];
   $nome = $_POST['nome'];
   $email = $_POST['email'];
-  $senha = $_POST['nova_senha'];
+  $senha = $_POST['nova_senha']? $_POST['nova_senha']: $_POST['senha'];
   $senha_antiga = $_POST['senha'];
   $valor = $_POST['valor'];
   $tipo = $_POST['tipo'];

@@ -37,13 +37,16 @@
   </header>
   <nav class = " mb-4 p-1 bg-danger navheader d-flex justify-content-center">
     <div>
-        <a href="../edicoes/aluno.html">Meu Cúrriculo</a>
+        <a href="edicoes/aluno.html">Meu Cúrriculo</a>
     </div>
     <div>
-        <a href="">Estágios</a>
+        <a href=""><?php echo $linha ['tipo']==0? "Estágios": "Estagiários"?></a>
     </div>
     <div>
-        <a href="../relato-anonimo/relato.html">Relato</a>
+        <a href="relato-anonimo/relato.html">Relato</a>
+    </div>
+    <div>
+        <a href="../relato-anonimo/relato.html">Sair</a>
     </div>
   </nav>
   <div class="main-content mb-3 ml-5">
@@ -85,7 +88,7 @@
     $results = get_usuarios($usuarios);
     echo '<div class = "d-flex flex-wrap">';
 
-    if(!empty($result)){
+    if($result){
       foreach ($results as $linha){
       echo "<div class = 'col-4 align-self-start justify-content-center p-5'>";
         echo "<div class=' p-2 card overflow-hidden position-relative d-flex justify-content-center align-items-center' style = ' width: 12em;'>";
@@ -102,7 +105,6 @@
       echo '</div>';
       }
     }else{
-      
       echo ' <div class="alert alert-danger" role="alert">'.
         ($linha['tipo']==1? "Nenhum aluno cadastrado.": "Nenhuma empresa cadastrada.")
         .'</div>';
