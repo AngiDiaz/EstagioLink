@@ -18,6 +18,7 @@
     $result = get_usuario($id_usuario);
     $login = $result[0];
     $tipo = $login['tipo'];
+    $id_dados = $login['dados'];
 
     
     ?>
@@ -32,7 +33,8 @@
                 </div>
             </div>
             <div class="col flex-grow d-flex ml-4 justify-content-end">
-                <span id="nomeUsuario" style="color:white">Olá <?php echo htmlspecialchars($login['nome']); ?></span>
+            <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='editar_usuarios.php'">Editar usuário</button>
+                <span id="nomeUsuario" style="color:white">Olá [username]]</span>
             </div>
             <div class="col-lg-1 col-2 d-flex justify-content-end flex-shrink-12">
                 <img id="fotoUsuario" class="img-fluid" src="../IMAGENS/<?php echo $login['foto'] ? $login['foto'] : 'foto-perfil.png'; ?>">
@@ -48,10 +50,14 @@
         <div>
             <a href="listar-usuarios.php">Pesquisar</a>
         </div>';
-    if ($tipo == 1) {
+    if ($tipo == 0) {
         echo '<div>
-                <a href="../relato-anonimo/relato.html">Relato</a>
+                <a href="relato-anonimo/relato.html">Relato</a>
               </div>';
+    }else{
+        echo '<div>
+            <a href="avaliacoes/empresa.php">Avaliações</a>
+        </div>';
     }
     echo '<div>
       <a href="../PHP-CONFIG/logout.php">Sair</a>
@@ -69,10 +75,7 @@
                         <a class="nav-link" href="main-aluno.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="listar-usuarios.php">Pesquisar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link"><?php echo $tipo == 1? "Empresa" : "Currículo"; ?></a>
+                        <a class="nav-link"><?php echo $tipo == 1? "Empresa" : "Currículo"; ?> <span class="sr-only">(Página atual)</span></a>
                     </li>
                 </ul>
             </div>
@@ -82,8 +85,9 @@
     <?php
     echo '<h3 style="margin-left: 5em">' . ($tipo== 1 ? "Empresa" : "Currículo") . '</h3>';
     if ($tipo == 1) {
-        
-        $result_data = get_dados($id_usuario);
+        if($login['dados']){
+
+        $result_data = get_dados($id_dados);
         $dados = $result_data[0];
         echo '<div class="container-fluid p-5">
             <div class="row flex-nowrap">
@@ -113,8 +117,8 @@
                 
             </div>
             <div class = "d-flex justify-content-center">
-            <button type="button" class="btn mr-3" onclick="window.location.href=\'paginas-formulario/empresa/informacoes-empresa.php\'">Editar Empresa</button></div>  
-        </div>';
+            <button type="button" class="btn mr-3 border" onclick="window.location.href=\'paginas-formulario/empresa/informacoes-empresa.php\'">Editar Informações<ion-icon name="create-outline"></ion-icon></button></div>  
+        </div>';}
     }else{
         echo '<div class="d-flex justify-content-center" style = "height: 50vh;">
             <div class="card" style="width: 18rem;">

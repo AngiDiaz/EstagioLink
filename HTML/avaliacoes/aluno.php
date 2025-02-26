@@ -13,7 +13,7 @@
   <?php
     include '../../PHP-CONFIG/UserLoginSession.php';
     verificarSessao();
-    $id_usuario = filter_input(INPUT_GET,'id_usuario',FILTER_SANITIZE_NUMBER_INT);
+    $empresa = filter_input(INPUT_GET,'id_usuario',FILTER_SANITIZE_NUMBER_INT);
   ?>
     <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 ">
         <div class ="row align-items-center flex-nowrap">
@@ -77,25 +77,26 @@
     <div class="alert alert-success" role="alert">
         Asseguramos que todas as informações fornecidas aqui serão tratadas com o mais alto grau de confidencialidade. Seu anonimato é nossa prioridade absoluta.
     </div>
-    <form action = "relato-concluido.html">
+    <form action = "../../PHP-CONFIG/comentar.php" method = "POST">
+        <input type = "hidden" value = <?php echo $empresa;?> name = "empresa">
         <div class="form-group">
             <label>Comentário anônimo</label>
-            <select class="inputformat form-control p-2">
-                <option name="anonimo" value="1">Sim</option>
-                <option name="anonimo" value="0">Não</option>
+            <select name="anonimo" class="inputformat form-control p-2" required>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
             </select>
         </div>
         <div class="form-group">
             <label>Em quanto você avalia sua satisfação com o estágio?</label><br>
-            <input type="radio" name="nota" value="1"> <label for="masc">Horrível</label>
-            <input type="radio" name="nota" value="2"> <label for="masc">Ruim</label>
-            <input type="radio" name="nota" value="3"> <label for="masc">Regular</label>
-            <input type="radio" name="nota" value="4"> <label for="masc">Bom</label>
-            <input type="radio" name="nota" value="5"> <label for="masc">Excelente</label>
+            <input type="radio" name="nota" value="1" required> <label for="nota">Horrível</label>
+            <input type="radio" name="nota" value="2" required> <label for="nota">Ruim</label>
+            <input type="radio" name="nota" value="3" required> <label for="nota">Regular</label>
+            <input type="radio" name="nota" value="4" required> <label for="nota">Bom</label>
+            <input type="radio" name="nota" value="5" required> <label for="nota">Excelente</label>
         </div>
         <div class="form-group">
             <label>Comentário</label>
-            <input class = "form-control mb-3" type = "text" placeholder="Escreva sua experiência com o estágio..." height="30em">
+            <textarea name = "comentario" class = "form-control mb-3" type = "text" placeholder="Escreva sua experiência com o estágio..." required></textarea>
             </div>
             <button class ="btn" type="submit">Enviar</button>
         </div>

@@ -1,6 +1,6 @@
 <?php
 include 'banco.php';
-    $id = $_POST['id_usuario'];
+    $id = $_POST['id_dados'];
     $descricao = $_POST['descricao-emp'];
     $telefone = $_POST['tel'];
     $email = $_POST['emailcontato'];
@@ -10,5 +10,7 @@ include 'banco.php';
     $oferta = $_POST['oferta'];
 
     atualizarDadosEmpresa($id, $descricao, $telefone, $email, $curso, $requisito, $resp, $oferta);
+
+    
 
 ?>

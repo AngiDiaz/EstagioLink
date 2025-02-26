@@ -17,7 +17,8 @@
   $id = $_COOKIE['id_usuario'];
   $result = get_usuario($id);
   $empresa = $result[0];
-  $results = get_dados($empresa['dados']);
+  $id_dados = htmlspecialchars($empresa['dados']);
+  $results = get_dados($id_dados);
   $dados = $results[0];
   ?>
     <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 ">
@@ -56,7 +57,7 @@
                   <a class="nav-link" href="../../main-aluno.html">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="">Minha empresa</a>
+                  <a class="nav-link" href=<?php echo $empresa['dados']?"../../visualizar.php":"";?>>Minha Empresa</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="">Informações da empresa <span class="sr-only">(Página atual)</span></a>
@@ -69,45 +70,50 @@
     <div class="container-fluid w-50">
         
         <form  action=<?php echo $empresa['dados']? "../../../PHP-CONFIG/atualizar-empresa.php": "../../../PHP-CONFIG/empresa.php"?> method="POST">
-            <input type="hidden" value ="<?php echo $id;?>" name="id_usuario">
+            <input type="hidden" value ="<?php echo htmlspecialchars($id);?>" name="id_usuario">
+            <?php
+            if($empresa['dados']){
+              echo '<input type="hidden" value ='.htmlspecialchars($dados['id_dados']).' name="id_dados">';
+            }
+            ?>
             <div class="border-bottom mb-3">
             </div>
             <h3>Informações da empresa</h3>
             <div class="form-group">
                 <label>Descrição da empresa</label>
-                <input type="text" class="form-control" name="descricao-emp"  placeholder="Fale um pouco sobre sua empresa" value = <?php echo $empresa['dados']? $dados['descricao']:"";?>>
+                <textarea type="text" class="form-control" name="descricao-emp"  placeholder="Fale um pouco sobre sua empresa" maxlength="255"> <?php echo $empresa['dados']? htmlspecialchars($dados['descricao']):"";?></textarea>
             </div>
             <div class="form-group">
                 <label>CEP</label>
-                <input type="number" class="form-control" name="cep-emp" class="form-control" placeholder="Ex: xxxxx-xxx" value = <?php echo $empresa['dados']? $dados['cep']:"";?>>
+                <input type="text" class="form-control" name="cep" class="form-control" placeholder="Ex: xxxxx-xxx" value = <?php echo $empresa['dados']? htmlspecialchars($dados['cep']):"";?>>
             </div>
             <div class="form-group">
                 <label>Telefone para contato</label>
-                <input type="tel" class="form-control" name="tel" class="form-control" placeholder="Ex: (xx) x xxxx-xxxx" value = <?php echo $empresa['dados']? $dados['telefone']:"";?>>
+                <input type="tel" class="form-control" name="tel" class="form-control" placeholder="Ex: (xx) x xxxx-xxxx" value = <?php echo $empresa['dados']? htmlspecialchars($dados['telefone']):"";?>>
             </div>
             <div class="form-group">
                 <label>Email para contato</label>
-                <input type="email" class="form-control" name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com" value = <?php echo $empresa['dados']? $dados['email_contato']:"";?>>
+                <input type="email" class="form-control" name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com" value = <?php echo $empresa['dados']? htmlspecialchars($dados['email_contato']):"";?> required>
             </div>
             <div class="border-bottom mb-3">
             </div>
             <h3>Informações da vaga</h3>
             <div class="form-group">
                 <label>Curso do estagiário</label>
-                <input type="text" class="form-control" name="curso"  placeholder="Ex: Informática, Alimentos, Edificações" value = <?php echo $empresa['dados']? $dados['curso_vaga']:"";?>>
+                <input type="text" class="form-control" name="curso"  placeholder="Ex: Informática, Alimentos, Edificações" value = <?php echo $empresa['dados']? htmlspecialchars($dados['curso_vaga']):"";?>>
             </div>
            
             <div class="form-group">
                 <label>Requisitos</label>
-                <input type="text" class="form-control" name="requisitos"  placeholder="Conhecimento requerido para o estágio" value = <?php echo $empresa['dados']? $dados['requisitos']:"";?>>
+                <textarea type="text" class="form-control" name="requisitos"  placeholder="Conhecimento requerido para o estágio"> <?php echo $empresa['dados']? htmlspecialchars($dados['requisitos']):"";?></textarea>
             </div>
             <div class="form-group">
                 <label>Responsabilidades</label>
-                <input type="text" class="form-control" name="responsabilidades" class="form-control" placeholder="Atividades do estágio" value = <?php echo $empresa['dados']? $dados['responsabilidades']:"";?>>
+                <textarea type="text" class="form-control" name="responsabilidades" class="form-control" placeholder="Atividades do estágio"><?php echo $empresa['dados']? htmlspecialchars($dados['responsabilidades']):"";?></textarea>
             </div>
             <div class="form-group">
                 <label>Oferta</label>
-                <input type="text" class="form-control" name="oferta"  placeholder="Bolsas, Auxilios e benefícios da empresa (ex: sala de descanso)" value = <?php echo $empresa['dados']? $dados['beneficios']:"";?>>
+                <textarea type="text" class="form-control" name="oferta"  placeholder="Bolsas, Auxilios e benefícios da empresa (ex: sala de descanso)"><?php echo $empresa['dados']? htmlspecialchars($dados['beneficios']):"";?></textarea>
             </div>
 
               
@@ -129,8 +135,10 @@
             </div>
         </div>
     </footer>
+    <script src = "../../../JS/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 </html>

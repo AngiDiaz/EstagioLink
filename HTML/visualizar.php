@@ -21,6 +21,10 @@
     $id_usuario = $_COOKIE['id_usuario'];
     $result_login = get_usuario($id);
     $login = $result_login[0];
+    $id_dados = $login['dados'];
+    
+    $comentarios = get_comentarios($id);
+    $comentario = $comentarios[0];
 
     
     ?>
@@ -35,10 +39,13 @@
                 </div>
             </div>
             <div class="col flex-grow d-flex ml-4 justify-content-end">
+            <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='editar_usuarios.php'">Editar usuário</button>
+
                 <span id="nomeUsuario" style="color:white">Olá <?php echo htmlspecialchars($login['nome']); ?></span>
             </div>
             <div class="col-lg-1 col-2 d-flex justify-content-end flex-shrink-12">
-                <img id="fotoUsuario" class="img-fluid" src="../IMAGENS/<?php echo $login['foto'] ? $login['foto'] : 'foto-perfil.png'; ?>">
+                
+                <img id="fotoUsuario" class="img-fluid" src="../IMAGENS/foto-perfil.png">
             </div>
         </div>
     </header>
@@ -86,13 +93,13 @@
     echo '<h3 style="margin-left: 5em">' . ($usuario['tipo'] == 1 ? "Empresa" : "Currículo") . '</h3>';
     if ($usuario['tipo'] == 1) {
         
-        $result_data = get_dados($id);
+        $result_data = get_dados($id_dados);
         $dados = $result_data[0];
         echo '<div class="container-fluid p-5">
             <div class="row flex-nowrap">
                 <div class="col px-3 align-items-center d-flex" style="flex-direction: column;">
                     <div border rounded py-5 w-75 mb-3 d-flex justify-content-center align-items-center">
-                        <img class="img-fluid" src="../IMAGENS/' . ($usuario['foto'] ? $usuario['foto'] : 'ELKLogo.png') . '">
+                        <img class="img-fluid" src="../IMAGENS/' . ($usuario['foto'] ? htmlspecialchars($usuario['foto']) : 'ELKLogo.png') . '">
                     </div>
                     <p class="alinhar">' . htmlspecialchars($dados['descricao']) . '</p>
                     <div class="align-items-center d-flex justify-content-between h-25 w-75 botaovisual" style="flex-direction: column;">
@@ -104,7 +111,7 @@
                 </div>
                 <div class="col-8 justify-content-center px-5" style="border-left: solid 0.1em rgba(61, 155, 58, 1);">
                     <div class="alert alert-success" role="alert">
-                        <b>' . htmlspecialchars($usuario['nome']) . '</b> está em busca de um estagiário do curso técnico em <b>' . htmlspecialchars($dados['curso']) . '</b> para integrar a equipe e colaborar em diversos projetos!
+                        <b>' . htmlspecialchars($usuario['nome']) . '</b> está em busca de um estagiário do curso técnico em <b>' . htmlspecialchars($dados['curso_vaga']) . '</b> para integrar a equipe e colaborar em diversos projetos!
                     </div>
                     <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Requisitos</p>
                     <span class="alinhar">' . htmlspecialchars($dados['requisitos']) . '</span>
@@ -115,37 +122,48 @@
                 </div>
             </div>
         </div>';
-        echo '            <button type="button" class="btn mr-3" onclick="window.location.href=\'avaliacoes/aluno.php?id_usuario=\''.$id.'">Avaliar Empresa</button></div>  ';
-        echo '<h3>Avaliações dos estagiários: 4  
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-        <ion-icon name="star-outline"></ion-icon>
-    </h3>
-    <div class="comentario">
-        <div class="linha">
-            <div class="col-1"><img class="img-fluid" src="../IMAGENS/foto-perfil.png"></div>
-            <span class="col">Marcos Oliveira Carianha</span>
-            <div class="col">
-                <span>4</span>
-                <ion-icon name="star-outline"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-                <ion-icon name="star-outline"></ion-icon>
-            </div>
-        </div>
-        <p>Minha experiência como estagiário na ELK foi agradável. Em meu primeiro dia, fui recebido de forma acolhedora. Porém, a imaturidade, falta de profissionalismo e ética moral presentes no ambiente de trabalho me fez repensar a vaga diversas vezes.</p>
-        <span>2 dias atrás.</span>
-    </div>
-';
+        echo '<button type="button" class="btn mr-3" onclick="window.location.href=\'avaliacoes/aluno.php?id_usuario=' . htmlspecialchars($id) . '\'">Avaliar Empresa</button>';
+        echo '<h3>Avaliações dos estagiários </h3>';
+            if($comentarios){
+                foreach ($comentarios as $comentario){
+                    $usuario = htmlspecialchars($comentario['id_usuario']);
+                    $autor = get_usuario($usuario);
+                    $infos = $autor[0];
+                    $tempo = tempoDecorrido($comentario['registro']);
+                    echo '
+                    <div class="comentariomaior p-2 mx-5">
+                        <div class="linha p-2 mb-4 align-items-center">
+                            <div class="col-2 p-2">
+                                <img class="img-fluid" src="../IMAGENS/' . ($comentario['anonimo'] == 0 ? htmlspecialchars($infos['foto']) : 'foto-perfil.png') . '">
+                            </div>
+                            <h5 class="col-2 text-left">' . ($comentario['anonimo'] == 0 ? htmlspecialchars($infos['nome']) : "Anônimo") . '</h5>
+                            <h5>' . htmlspecialchars($comentario['nota']) . '</h5>
+                            <div class="col">';
+                
+                for ($i = 0; $i < $comentario['nota']; $i++) {
+                    echo '<ion-icon name="star-outline"></ion-icon> ';
+                }
+                
+                echo '
+                            </div>
+                        </div>
+                        <span class = "ml-5" style = "overflow-wrap: break-word;">' . htmlspecialchars($comentario['comentario']) . '</span>
+                        <span class = "text-center">' . htmlspecialchars($tempo) . '.</span>
+                    </div>
+                    <div class="mx-5 my-3 botaovisual d-flex justify-content-between align-items-center">
+                        <button class="btn border mb-5">Responder<ion-icon name="send-outline"></ion-icon></button>
+                        <button class="btn border mb-5">Denunciar<ion-icon name="alert-circle-outline"></ion-icon></button>
+                    </div></div>';
+                }
+            }
     }else{
         echo '<div class="d-flex justify-content-center" style = "height: 50vh;">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top img-fluid border"src ="../IMAGENS/'.$usuario['foto'].'" alt="Imagem de capa do card">
+                <img class="card-img-top img-fluid border"src ="../IMAGENS/'.htmlspecialchars($usuario['foto']).'" alt="Imagem de capa do card">
                 <div class="card-body">
-                    <h5 class="card-title">'.$usuario['nome'].'</h5>
+                    <h5 class="card-title">'.htmlspecialchars($usuario['nome']).'</h5>
                     
-                    <a href="../PDF/'.$usuario['curriculo'].'" target="_blank">Ver Currículo</a>
+                    <a href="../PDF/'.htmlspecialchars($usuario['curriculo']).'" target="_blank">Ver Currículo</a>
                 
                 </div>
             </div>

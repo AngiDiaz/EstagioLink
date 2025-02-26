@@ -15,8 +15,8 @@
         $linha = $result[0];
         if($linha['tipo']==0){
           if($linha['curriculo']){
-            header('Location:../HTML/listar-usuarios.php?');
-          }else{
+            header('Location:../HTML/listar-usuarios.php');
+          }else  if(!$linha['curriculo']){
             header('Location:../HTML/paginas-formulario/aluno/dados-pessoais.html');
           }
         }else if($linha['tipo']==1){

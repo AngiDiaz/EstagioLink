@@ -23,6 +23,8 @@
             
           </div>
           <div class = "col flex-grow d-flex ml-4 justify-content-end">
+          <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='editar_usuarios.php'">Editar usuário</button>
+
             <span id = "nomeUsuario" style = "color:white">Olá [username]</span>
           </div>
     
@@ -73,7 +75,7 @@
             <label for="email">Email:</label>
             <input class = "form-control" type="email" id="email" name="email" value="<?php echo $linha['email'];?>">
             <label for="senha">Senha:</label>
-            <input class = "form-control" type="password" id="senha" name="senha"><br>
+            <input class = "form-control" type="password" id="senha" name="senha" required><br>
             <label for="nova_senha">Nova Senha:</label>
             <input class = "form-control" type="password" id="nova_senha" name="nova_senha">
             <br>

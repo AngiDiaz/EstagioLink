@@ -41,7 +41,7 @@
   </header>
   <nav class = "mb-4 p-1 bg-danger navheader d-flex justify-content-center">
     <div>
-        <a href="editar-visualizar.php">Meu Cúrriculo</a>
+        <a href="editar-visualizar.php"><?php echo $linha["tipo"]==0? "Meu Currículo": "Minha Empresa"; ?></a>
     </div>
     <div>
         <a href="">Pesquisar</a>
@@ -51,6 +51,10 @@
       echo '<div id = "relato">
         <a href="relato-anonimo/relato.html">Relato</a>
     </div>';
+    }else{
+      echo ' <div>
+            <a href="avaliacoes/empresa.php">Avaliações</a>
+        </div>';
     }
     ?>
     
@@ -93,28 +97,31 @@
       $usuarios = 0;
     }
     $results = get_usuarios($usuarios);
-    $linhas = $results[0];
     echo '<div class = "d-flex flex-wrap">';
 
     if($results){
-      foreach ($results as $linhas){
-      echo "<div class = 'col-4 align-self-start justify-content-center p-5'>";
+      foreach ($results as $linha){
+      if($linha['curriculo'] || $linha['dados']){echo "<div class = 'col-4 align-self-start justify-content-center p-5'>";
         echo "<div class=' p-2 card overflow-hidden position-relative d-flex justify-content-center align-items-center' style = ' width: 12em;'>";
-          echo "<img src= ../IMAGENS/".($linhas['foto'] == null ? 'foto-perfil.png' : $linhas['foto']). " width=150em height=150em style = 'object-fit: cover'>";
+          echo "<img src= ../IMAGENS/".($linha['foto'] == null ? 'foto-perfil.png' : htmlspecialchars($linha['foto'])). " width=150em height=150em style = 'object-fit: cover'>";
         echo "</div>";
         echo "<div class='d-flex align-items-center justify-content-between' style = ' width: 12em;'>
-              <span class='card-title'>".$linhas['nome']."</span>
+              <span class='card-title'>".$linha['nome']."</span>
               <div class = 'justify-content-between'>
-                <a class = 'text-dark' href='visualizar.php?id_usuario=".$linhas['id_usuario']."'><ion-icon name='eye-outline'></ion-icon></a>
+                <a class = 'text-dark' href='visualizar.php?id_usuario=".htmlspecialchars($linha['id_usuario'])."'><ion-icon name='eye-outline'></ion-icon></a>
                 <ion-icon name='call-outline'></ion-icon>
                 <ion-icon name='star-outline'></ion-icon>
                </div>
              </div> ";
-      echo '</div>';
+      echo '</div>';}else{
+        echo ' <div class="alert alert-danger" role="alert">'.
+          ($linha['tipo']==0? "Nenhum aluno cadastrado.": "Nenhuma empresa cadastrada.")
+          .'</div>';
+      }
       }
     }else{
       echo ' <div class="alert alert-danger" role="alert">'.
-        ($linhas['tipo']==1? "Nenhum aluno cadastrado.": "Nenhuma empresa cadastrada.")
+        ($linha['tipo']==1? "Nenhum aluno cadastrado.": "Nenhuma empresa cadastrada.")
         .'</div>';
     }
     

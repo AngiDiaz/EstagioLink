@@ -1,10 +1,12 @@
 <?php
+    include 'banco.php';
     $id_usuario = $_COOKIE['id_usuario'];
     $comentario = $_POST['comentario'];
     $nota = $_POST['nota'];
-    $empresa = filter_input(INPUT_GET,'id_usuario',FILTER_SANITIZE_NUMBER_INT);;
+    $empresa = $_POST['empresa'];
+    $anonimo = $_POST['anonimo'];
 
 
-    comentar($id_usuario, $comentario, $nota, $empresa);
+    comentar($id_usuario, $comentario, $nota, $empresa, $anonimo);
 
 ?>

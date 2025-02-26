@@ -173,22 +173,38 @@ function addCurriculo($pdf, $id){
   $instrucao->execute();
 }
 
-function comentar($id, $comentario, $nota, $empresa){
+function comentar($id, $comentario, $nota, $empresa, $anonimo){
   $conn = conectar();
-  $sql = "INSERT INTO comentarios(comentario, nota, id_usuario, empresa) VALUES (:COMENTARIO, :NOTA, :ID_USUARIO, :EMPRESA)";
+  $sql = "INSERT INTO comentarios(comentario, nota, id_usuario, empresa, anonimo) VALUES (:COMENTARIO, :NOTA, :ID_USUARIO, :EMPRESA, :ANONIMO)";
   $instrucao = $conn->prepare($sql);
   $instrucao->bindParam(":COMENTARIO", $comentario);
   $instrucao->bindParam(":NOTA",$nota);
-  $instrucao->bindParam(":ID_USUARIO", $id_usuario);
+  $instrucao->bindParam(":ID_USUARIO", $id);
   $instrucao->bindParam(":EMPRESA",$empresa);
+  $instrucao->bindParam(":ANONIMO",$anonimo);
 
 
   $instrucao->execute();
+  header("Location: ../HTML/listar-usuarios.php");
+}
+function get_comentarios($empresa){
+  $conn = conectar();
+
+  $sql = "SELECT * FROM comentarios WHERE empresa = :EMPRESA";
+  $instrucao = $conn->prepare($sql);
+  $instrucao->bindParam(":EMPRESA", $empresa);
+  $instrucao->execute();
+
+  $result = $instrucao->fetchAll(PDO::FETCH_ASSOC);
+  return $result;
 }
 function tempoDecorrido($timestamp) {
-  $agora = new DateTime(); // Data/hora atual
-  $comentario = new DateTime($timestamp); // Data/hora do comentário
-  $diferenca = $agora->diff($comentario); // Calcula a diferença
+  date_default_timezone_set('America/Sao_Paulo'); 
+
+  $agora = new DateTime(); 
+  $comentario = new DateTime($timestamp); 
+
+  $diferenca = $agora->diff($comentario);
 
   if ($diferenca->y > 0) {
       return $diferenca->y == 1 ? '1 ano atrás' : $diferenca->y . ' anos atrás';

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favoritos</title>
+    <title>Avaliações</title>
     <link rel="icon" href="../../IMAGENS/ELKLogo.png" type="image/x-icon"/>
     <link rel = "stylesheet" type="text/css" href="../../CSS/style.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -11,7 +11,7 @@
 </head>
 <body>
     <?php
-        include '../../../PHP-CONFIG/UserLoginSession.php';
+        include '../../PHP-CONFIG/UserLoginSession.php';
         verificarSessao();
         $id_usuario = $_COOKIE['id_usuario'];
         $comentarios = get_comentarios($id_usuario);
@@ -24,17 +24,18 @@
           <div class ="row flex-shrink-1 align-items-center">
             <div class="fundo-elk-logo">
               <a href="main-aluno.html" class=" text-decoration-none">
-              <img class=" img-fluid"src="../IMAGENS/EstágioLink.png">
+              <img class=" img-fluid"src="../../IMAGENS/EstágioLink.png">
               </a>
             </div>
             
           </div>
           <div class = "col flex-grow d-flex ml-4 justify-content-end">
+          <button type="button" class="btn btn-outline-light mr-3" onclick="window.location.href='../editar_usuarios.php'">Editar usuário</button>
             <span id = "nomeUsuario" style = "color:white">Olá [username]</span>
           </div>
     
           <div class=" col-lg-1 col-2 d-flex justify-content-end flex-shrink-12">
-            <img class="img-fluid" id = "fotoUsuario" src = "../IMAGENS/foto-perfil.png">
+            <img class="img-fluid" id = "fotoUsuario" src = "../../IMAGENS/foto-perfil.png">
           </div>
         </div>
         
@@ -44,11 +45,14 @@
             <a href="../editar-visualizar.php">Minha Empresa</a>
         </div>
         <div>
-            <a href="../listar-usuarios">Currículos</a>
+            <a href="../listar-usuarios.php">Pesquisar</a>
         </div>
         <div>
             <a href="">Avaliações</a>
         </div>
+        <div>
+      <a href="../../PHP-CONFIG/logout.php">Sair</a>
+    </div>
      </nav>
     <div class="main-content mb-3 ml-5">
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -58,7 +62,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item">
-                  <a class="nav-link" href="main-empresa.html">Home </a>
+                  <a class="nav-link" href="../main-empresa.html">Home </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="">Avaliações <span class="sr-only">(Página atual)</span></a>
@@ -68,14 +72,7 @@
           </nav>
     </div>
     <h3 class="mb-4" style="margin-left: 5em">Avaliações</h3>
-    <h5 class="mb-4" style="margin-left: 10em">
-        Avaliação geral:
-        <span> 4</span>
-            <ion-icon name="star-outline"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
-    </h5>
+   <div class = "p-5 w-75 container">
     <?php
 
         if($comentarios){
@@ -84,29 +81,34 @@
                 $autor = get_usuario($usuario);
                 $infos = $autor[0];
                 $tempo = tempoDecorrido($comentario['registro']);
-                echo '<div class="container-fluid w-75">
-                        <div class = "comentario">
-                            <div class = "linha ">';
-                echo '<div class ="col-1"><img class="img-fluid" src='.htmlspecialchars($infos['foto']).'></div>
-                        <span class="col">'.htmlspecialchars($infos['nome']).'</span>
-                        <span> 4</span>
-                        <div class="col">';
-                for($i = 0; $i<4; $i++){
-                    echo '<ion-icon name="star-outline"></ion-icon>';
-                }
-                echo ' </div> </div>';
-                echo '<p>'.htmlspecialchars($comentario['comentario']).'</p>
-                <span>2 dias atrás.</span>
-                 </div>
-                <div class ="m-5 botaovisual d-flex justify-content-between align-items-center">
-                        <button class = "btn border mb-5">Responder<ion-icon name="send-outline"></ion-icon></button>
-                        <button class = "btn border mb-5">Denunciar<ion-icon name="alert-circle-outline"></ion-icon></button>
+                echo '
+                <div class="comentariomaior p-2 mx-5">
+                    <div class="linha p-2 mb-4 align-items-center">
+                        <div class="col-2 p-2">
+                            <img class="img-fluid" src="../../IMAGENS/' . ($comentario['anonimo'] == 0 ? htmlspecialchars($infos['foto']) : 'foto-perfil.png') . '">
+                        </div>
+                        <h5 class="col-2 text-left " >' . ($comentario['anonimo'] == 0 ? htmlspecialchars($infos['nome']) : "Anônimo") . '</h5>
+                        <h5>' . htmlspecialchars($comentario['nota']) . '</h5>
+                        <div class="col>';
+            
+            for ($i = 0; $i < $comentario['nota']; $i++) {
+                echo '<ion-icon name="star-outline"></ion-icon> ';
+            }
+            
+            echo '
+                        </div>
                     </div>
+                    <span class = "ml-5" style = "overflow-wrap: break-word;">' . htmlspecialchars($comentario['comentario']) . '</span>
+                    <span class = "text-center">' . htmlspecialchars($tempo) . '.</span>
+                </div>
+                <div class="mx-5 my-3 botaovisual d-flex justify-content-between align-items-center">
+                    <button class="btn border mb-5">Responder<ion-icon name="send-outline"></ion-icon></button>
+                    <button class="btn border mb-5">Denunciar<ion-icon name="alert-circle-outline"></ion-icon></button>
                 </div>';
             }
         }
     ?>
-    
+    </div>
           
           
           

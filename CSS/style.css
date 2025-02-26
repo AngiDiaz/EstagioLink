@@ -143,3 +143,18 @@ button{
 .comentario img{
     width: 3em;
 }
+
+
+.comentariomaior{
+    display: flex;
+    background-color: rgba(224, 224, 224, 1);
+    border-radius: 3em;
+    flex-direction: column;
+}
+.comentariomaior .linha{
+    display: flex;
+    flex-direction: row;
+}
+.comentariomaior img{
+    width: 6em;
+}
