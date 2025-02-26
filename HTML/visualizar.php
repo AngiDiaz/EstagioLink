@@ -24,7 +24,10 @@
     $id_dados = $login['dados'];
     
     $comentarios = get_comentarios($id);
-    $comentario = $comentarios[0];
+    if($comentarios){
+        $comentario = $comentarios[0];
+    }
+    
 
     
     ?>

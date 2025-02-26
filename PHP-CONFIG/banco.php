@@ -122,6 +122,8 @@ function associarDados($id_usuario, $id_dados) {
   $instrucao->bindParam(":ID_DADOS", $id_dados);
   $instrucao->bindParam(":ID_USUARIO", $id_usuario);
   $instrucao->execute();
+
+  header('Location: ../HTML/listar-usuarios.php');
 }
 
 function atualizarDadosEmpresa($id_dados, $descricao, $telefone, $email_contato, $curso_vaga, $requisitos, $responsabilidades, $beneficios) {

@@ -19,7 +19,10 @@
   $empresa = $result[0];
   $id_dados = htmlspecialchars($empresa['dados']);
   $results = get_dados($id_dados);
-  $dados = $results[0];
+  if($results){
+    $dados = $results[0];
+  }
+  
   ?>
     <header class="py-3 container-fluid flex-wrap align-items-center justify-content-center justify-content-md-between px-4 ">
         <div class ="row align-items-center flex-nowrap">
