@@ -121,9 +121,8 @@
         </div>';}
     }else{
         echo '<div class="d-flex justify-content-center" style = "height: 50vh;">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top img-fluid border"src ="../IMAGENS/'.$login['foto'].'" alt="Imagem de capa do card">
-                <div class="card-body">
+            <div class="card p-5" style="width: 18rem;">
+<img class="card-img-top img-fluid border" src="../IMAGENS/'.($login['foto'] ? htmlspecialchars($login['foto']) : "foto-perfil.png").'" alt="Imagem de capa do card">                <div class="card-body">
                     <h5 class="card-title">'.$login['nome'].'</h5>
                     
                     <a href="../PDF/'.$login['curriculo'].'" target="_blank">Ver Currículo</a>

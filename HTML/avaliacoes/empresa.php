@@ -15,7 +15,10 @@
         verificarSessao();
         $id_usuario = $_COOKIE['id_usuario'];
         $comentarios = get_comentarios($id_usuario);
-        $comentario = $comentarios[0];
+        if($comentarios){
+          $comentario = $comentarios[0];
+        }
+        
         
         
     ?>
@@ -106,6 +109,10 @@
                     <button class="btn border mb-5">Denunciar<ion-icon name="alert-circle-outline"></ion-icon></button>
                 </div>';
             }
+        }else{
+          echo ' <div class="alert alert-danger text-center" role="alert">
+        Nenhuma avaliação.
+        </div>';
         }
     ?>
     </div>

@@ -96,7 +96,7 @@
             </div>
             <div class="form-group">
                 <label>Email para contato</label>
-                <input type="email" class="form-control" name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com" value = <?php echo $empresa['dados']? htmlspecialchars($dados['email_contato']):"";?> required>
+                <input type="email" class="form-control"required name="emailcontato" class="form-control" placeholder="Ex: example@gmail.com" value = <?php echo $empresa['dados']? htmlspecialchars($dados['email_contato']):"";?> >
             </div>
             <div class="border-bottom mb-3">
             </div>

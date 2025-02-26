@@ -56,14 +56,14 @@
     <?php
     echo '<nav class="mb-4 p-1 bg-danger navheader d-flex justify-content-center">
         <div>';
-    echo $usuario['tipo'] == 1? "<a href=''>Meu Currículo</a>" : "<a href=''>Minha Empresa</a>";
+    echo $usuario['tipo'] == 1? "<a href='editar-visualizar.php'>Meu Currículo</a>" : "<a href='editar-visualizar.php'>Minha Empresa</a>";
     echo '</div>
         <div>
             <a href="listar-usuarios.php">Pesquisar</a>
         </div>';
     if ($usuario['tipo'] == 1) {
         echo '<div>
-                <a href="../relato-anonimo/relato.html">Relato</a>
+                <a href="relato-anonimo/relato.html">Relato</a>
               </div>';
     }
     echo '<div>
@@ -161,7 +161,7 @@
             }
     }else{
         echo '<div class="d-flex justify-content-center" style = "height: 50vh;">
-            <div class="card" style="width: 18rem;">
+            <div class="card p-5" style="width: 18rem;">
                 <img class="card-img-top img-fluid border"src ="../IMAGENS/'.htmlspecialchars($usuario['foto']).'" alt="Imagem de capa do card">
                 <div class="card-body">
                     <h5 class="card-title">'.htmlspecialchars($usuario['nome']).'</h5>
@@ -172,6 +172,12 @@
             </div>
         </div>';
     
+    }
+    if(!$comentarios){
+        if($usuario['tipo'] == 1) {   
+        echo ' <div class="alert alert-danger text-center" role="alert">
+          Nenhuma avaliação.
+          </div>';}
     }
     ?>
 
