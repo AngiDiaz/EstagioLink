@@ -84,42 +84,43 @@
 
     <?php
     echo '<h3 style="margin-left: 5em">' . ($tipo== 1 ? "Empresa" : "Currículo") . '</h3>';
-    if ($tipo == 1) {
-        if($login['dados']){
+    if($login['curriculo'] or $login['dados']){
+        if ($tipo == 1) {
+            if($login['dados']){
 
-        $result_data = get_dados($id_dados);
-        $dados = $result_data[0];
-        echo '<div class="container-fluid p-5">
-            <div class="row flex-nowrap">
-                <div class="col px-3 align-items-center d-flex" style="flex-direction: column;">
-                    <div border rounded py-5 w-75 mb-3 d-flex justify-content-center align-items-center">
-                        <img class="img-fluid" src="../IMAGENS/' . ($login['foto'] ? $login['foto'] : 'ELKLogo.png') . '">
+            $result_data = get_dados($id_dados);
+            $dados = $result_data[0];
+            echo '<div class="container-fluid p-5">
+                <div class="row flex-nowrap">
+                    <div class="col px-3 align-items-center d-flex" style="flex-direction: column;">
+                        <div border rounded py-5 w-75 mb-3 d-flex justify-content-center align-items-center">
+                            <img class="img-fluid" src="../IMAGENS/' . ($login['foto'] ? $login['foto'] : 'ELKLogo.png') . '">
+                        </div>
+                        <p class="alinhar">' . htmlspecialchars($dados['descricao']) . '</p>
+                        <div class="align-items-center d-flex justify-content-between h-25 w-75 botaovisual" style="flex-direction: column;">
+                            <button class="btn border">Adicionar aos favoritos<ion-icon name="add-outline"></ion-icon></button>
+                            <button class="btn border">Localização<ion-icon class="mr-3" name="map-outline"></ion-icon></button>
+                            <button class="btn border">Entrar em contato<ion-icon class="mr-3" name="call-outline"></ion-icon></button>
+                            <button class="btn border">Avalie esta empresa<ion-icon class="mr-3" name="star-outline"></ion-icon></button>
+                        </div>
                     </div>
-                    <p class="alinhar">' . htmlspecialchars($dados['descricao']) . '</p>
-                    <div class="align-items-center d-flex justify-content-between h-25 w-75 botaovisual" style="flex-direction: column;">
-                        <button class="btn border">Adicionar aos favoritos<ion-icon name="add-outline"></ion-icon></button>
-                        <button class="btn border">Localização<ion-icon class="mr-3" name="map-outline"></ion-icon></button>
-                        <button class="btn border">Entrar em contato<ion-icon class="mr-3" name="call-outline"></ion-icon></button>
-                        <button class="btn border">Avalie esta empresa<ion-icon class="mr-3" name="star-outline"></ion-icon></button>
+                    <div class="col-8 justify-content-center px-5" style="border-left: solid 0.1em rgba(61, 155, 58, 1);">
+                        <div class="alert alert-success" role="alert">
+                            <b>' . htmlspecialchars($login['nome']) . '</b> está em busca de um estagiário do curso técnico em <b>' . htmlspecialchars($dados['curso_vaga']) . '</b> para integrar a equipe e colaborar em diversos projetos!
+                        </div>
+                        <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Requisitos</p>
+                        <span class="alinhar">' . htmlspecialchars($dados['requisitos']) . '</span>
+                        <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Responsabilidades</p>
+                        <span class="alinhar">' . htmlspecialchars($dados['responsabilidades']) . '</span>
+                        <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Oferta</p>
+                        <span class="alinhar">' . htmlspecialchars($dados['beneficios']) . '</span>
                     </div>
+                    
                 </div>
-                <div class="col-8 justify-content-center px-5" style="border-left: solid 0.1em rgba(61, 155, 58, 1);">
-                    <div class="alert alert-success" role="alert">
-                        <b>' . htmlspecialchars($login['nome']) . '</b> está em busca de um estagiário do curso técnico em <b>' . htmlspecialchars($dados['curso_vaga']) . '</b> para integrar a equipe e colaborar em diversos projetos!
-                    </div>
-                    <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Requisitos</p>
-                    <span class="alinhar">' . htmlspecialchars($dados['requisitos']) . '</span>
-                    <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Responsabilidades</p>
-                    <span class="alinhar">' . htmlspecialchars($dados['responsabilidades']) . '</span>
-                    <p class="bg-danger text-white pl-4" style="border-radius: 3em;">Oferta</p>
-                    <span class="alinhar">' . htmlspecialchars($dados['beneficios']) . '</span>
-                </div>
-                
-            </div>
-            <div class = "d-flex justify-content-center">
-            <button type="button" class="btn mr-3 border" onclick="window.location.href=\'paginas-formulario/empresa/informacoes-empresa.php\'">Editar Informações<ion-icon name="create-outline"></ion-icon></button></div>  
-        </div>';}
-    }else{
+                <div class = "d-flex justify-content-center">
+                <button type="button" class="btn mr-3 border" onclick="window.location.href=\'paginas-formulario/empresa/informacoes-empresa.php\'">Editar Informações<ion-icon name="create-outline"></ion-icon></button></div>  
+            </div>';}
+        }else{
         echo '<div class="d-flex justify-content-center " style = "height: 50vh;">
         <div class="card p-5 overflow-hidden position-relative d-flex justify-content-center align-items-center" style="width: 18rem;">
             <div class = "p-2 overflow-hidden w-75"><img  width=150em height=150em class="card-img-top img-fluid border"src ="../IMAGENS/'.htmlspecialchars($login['foto']).'" alt="Imagem de capa do card"></div>
@@ -133,6 +134,8 @@
             </div>
         </div>';
     
+    }}else{
+        $tipo == 0?header("Location: paginas-formulario/aluno/dados-pessoais.html"): header("Location: paginas-formulario/empresa/informacoes-empresa.php");
     }
     ?>
 
