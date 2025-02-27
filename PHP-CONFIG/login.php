@@ -22,7 +22,7 @@
         }else if($linha['tipo']==1){
           if($linha['dados']){
             header('Location:../HTML/listar-usuarios.php?');
-          }else{
+          }else  if(!$linha['dados']){
             header('Location:../HTML/paginas-formulario/empresa/informacoes-empresa.php');
           }
         }

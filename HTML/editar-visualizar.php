@@ -120,13 +120,15 @@
             <button type="button" class="btn mr-3 border" onclick="window.location.href=\'paginas-formulario/empresa/informacoes-empresa.php\'">Editar Informações<ion-icon name="create-outline"></ion-icon></button></div>  
         </div>';}
     }else{
-        echo '<div class="d-flex justify-content-center" style = "height: 50vh;">
-            <div class="card p-5" style="width: 18rem;">
-<img class="card-img-top img-fluid border" src="../IMAGENS/'.($login['foto'] ? htmlspecialchars($login['foto']) : "foto-perfil.png").'" alt="Imagem de capa do card">                <div class="card-body">
+        echo '<div class="d-flex justify-content-center " style = "height: 50vh;">
+        <div class="card p-5 overflow-hidden position-relative d-flex justify-content-center align-items-center" style="width: 18rem;">
+            <div class = "p-2 overflow-hidden w-75"><img  width=150em height=150em class="card-img-top img-fluid border"src ="../IMAGENS/'.htmlspecialchars($login['foto']).'" alt="Imagem de capa do card"></div>
+            <div class="card-body">';
+                echo '<div class="card-body">
                     <h5 class="card-title">'.$login['nome'].'</h5>
                     
                     <a href="../PDF/'.$login['curriculo'].'" target="_blank">Ver Currículo</a>
-                
+                </div>
                 </div>
             </div>
         </div>';

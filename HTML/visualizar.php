@@ -65,6 +65,10 @@
         echo '<div>
                 <a href="relato-anonimo/relato.html">Relato</a>
               </div>';
+    }else{
+        echo '<div>
+            <a href="avaliacoes/empresa.php">Avaliações</a>
+        </div>';
     }
     echo '<div>
       <a href="../PHP-CONFIG/logout.php">Sair</a>
@@ -160,9 +164,9 @@
                 }
             }
     }else{
-        echo '<div class="d-flex justify-content-center" style = "height: 50vh;">
-            <div class="card p-5" style="width: 18rem;">
-                <img class="card-img-top img-fluid border"src ="../IMAGENS/'.htmlspecialchars($usuario['foto']).'" alt="Imagem de capa do card">
+        echo '<div class="d-flex justify-content-center " style = "height: 50vh;">
+            <div class="card p-5 overflow-hidden position-relative d-flex justify-content-center align-items-center" style="width: 18rem;">
+                <div class = "p-2 overflow-hidden w-75"><img  width=150em height=150em class="card-img-top img-fluid border"src ="../IMAGENS/'.htmlspecialchars($usuario['foto']).'" alt="Imagem de capa do card"></div>
                 <div class="card-body">
                     <h5 class="card-title">'.htmlspecialchars($usuario['nome']).'</h5>
                     
